@@ -1,4 +1,4 @@
-// lib/services/garden_generation_service.dart
+// lib/services/pool_generation_service.dart
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -11,7 +11,7 @@ export '../replicate_nano_banana_service_multi.dart'
 
 /// Builds an optimised Imagen / Replicate prompt from the settings that the
 /// user selected in [CustomStudioScreen].
-class GardenPromptBuilder {
+class PoolPromptBuilder {
   static String build({
     required String styleName,
     required Map<String, dynamic> settings,
@@ -20,19 +20,19 @@ class GardenPromptBuilder {
 
     // ── Preservation prefix ──────────────────────────────────────────────
     parts.add(
-      'Transform this existing outdoor garden photo while preserving the '
+      'Transform this existing outdoor pool photo while preserving the '
       'exact same camera angle, perspective, spatial layout, '
       'and surrounding architecture.',
     );
 
     // ── Style ────────────────────────────────────────────────────────────
-    parts.add('Apply a $styleName garden design style to the outdoor space.');
+    parts.add('Apply a $styleName pool design style to the outdoor space.');
 
     // ── Season ───────────────────────────────────────────────────────────
     final season = settings['season'] as String?;
     if (season != null && season.isNotEmpty) {
-      parts.add('Set the garden in $season season with appropriate seasonal '
-          'plants, colors, and atmosphere.');
+      parts.add('Set the pool in $season season with appropriate seasonal '
+          'pools, colors, and atmosphere.');
     }
 
     // ── Time of Day ──────────────────────────────────────────────────────
@@ -41,23 +41,23 @@ class GardenPromptBuilder {
       parts.add('Lighting should reflect $timeOfDay ambiance.');
     }
 
-    // ── Plant density ────────────────────────────────────────────────────
+    // ── Pool density ────────────────────────────────────────────────────
     final density = (settings['density'] as num?)?.toDouble() ?? 0.5;
     if (density > 0.7) {
-      parts.add('Dense, lush planting with abundant greenery and full canopy.');
+      parts.add('Dense, lush pool area with abundant greenery and full canopy.');
     } else if (density < 0.3) {
-      parts.add('Sparse, minimalist planting with open space and breathing room.');
+      parts.add('Sparse, minimalist pool area with open space and breathing room.');
     } else {
-      parts.add('Balanced planting density with well-spaced plants.');
+      parts.add('Balanced pool feature density with well-spaced pools.');
     }
 
-    // ── Flower intensity ─────────────────────────────────────────────────
-    final flowers = (settings['flowers'] as num?)?.toDouble() ?? 0.3;
-    if (flowers > 0.6) {
+    // ── Tile intensity ─────────────────────────────────────────────────
+    final tiles = (settings['tiles'] as num?)?.toDouble() ?? 0.3;
+    if (tiles > 0.6) {
       parts.add(
-          'Abundant colorful flowering plants and blooming borders.');
-    } else if (flowers > 0.2) {
-      parts.add('Moderate floral accents and flowering shrubs.');
+          'Abundant colorful tiles around pools and blooming borders.');
+    } else if (tiles > 0.2) {
+      parts.add('Moderate floral accents and tiled elements.');
     }
 
     // ── Water ────────────────────────────────────────────────────────────
@@ -73,14 +73,14 @@ class GardenPromptBuilder {
         : sunlight > 0.3
             ? 'partially shaded, dappled light'
             : 'softly shaded, cool tones';
-    parts.add('Garden has $lightDesc sunlight conditions.');
+    parts.add('Pool has $lightDesc sunlight conditions.');
 
-    // ── Tree size ────────────────────────────────────────────────────────
-    final treeSize = (settings['treeSize'] as num?)?.toDouble() ?? 0.5;
-    if (treeSize > 0.7) {
+    // ── Pool size ────────────────────────────────────────────────────────
+    final poolSize = (settings['poolSize'] as num?)?.toDouble() ?? 0.5;
+    if (poolSize > 0.7) {
       parts.add('Include tall mature trees for scale and shade.');
-    } else if (treeSize < 0.3) {
-      parts.add('Small ornamental trees and compact shrubs only.');
+    } else if (poolSize < 0.3) {
+      parts.add('Small ornamental features and compact shrubs only.');
     }
 
     // ── Color vibrancy ───────────────────────────────────────────────────
@@ -117,7 +117,7 @@ class GardenPromptBuilder {
       'solar path lights',
     ];
     if (lightingIdx < lightingNames.length) {
-      parts.add('Garden lighting uses ${lightingNames[lightingIdx]}.');
+      parts.add('Pool lighting uses ${lightingNames[lightingIdx]}.');
     }
 
     // ── Water feature ────────────────────────────────────────────────────
@@ -147,15 +147,15 @@ class GardenPromptBuilder {
 }
 
 /// Thin wrapper that loads image bytes from a file path and calls the API.
-class GardenGenerationService {
-  GardenGenerationService()
-      : _api = ReplicateGardenAIService(
+class PoolGenerationService {
+  PoolGenerationService()
+      : _api = ReplicatePoolAIService(
           filter: SafePromptFilter(mode: 'strict'),
         );
 
-  final ReplicateGardenAIService _api;
+  final ReplicatePoolAIService _api;
 
-  /// [imagePath] — absolute path of the uploaded garden photo.
+  /// [imagePath] — absolute path of the uploaded pool photo.
   /// [styleName] — selected style name.
   /// [settings]  — map of all custom-studio slider / picker values.
   Future<String?> generate({
@@ -165,11 +165,11 @@ class GardenGenerationService {
     GenerationConfig config = const GenerationConfig(),
   }) async {
     final bytes = await File(imagePath).readAsBytes();
-    final prompt = GardenPromptBuilder.build(
+    final prompt = PoolPromptBuilder.build(
       styleName: styleName,
       settings: settings,
     );
-    debugPrint('[GardenGeneration] Prompt: $prompt');
+    debugPrint('[PoolGeneration] Prompt: $prompt');
 
     return _api.generateMultiBytes(
       images: [bytes],

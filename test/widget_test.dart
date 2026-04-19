@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:app/models/garden_model.dart';
+import 'package:app/models/pool_model.dart';
 
 void main() {
-  test('GardenModel serialization', () {
+  test('PoolModel serialization', () {
     final timestamp = DateTime.now();
-    final model = GardenModel(
+    final model = PoolModel(
       id: '123',
       originalImagePath: 'path/to/orig',
       resultImagePath: 'path/to/res',
@@ -19,7 +19,7 @@ void main() {
     expect(json['styleName'], 'Zen');
     expect(json['isFavorite'], true);
 
-    final newModel = GardenModel.fromJson(json);
+    final newModel = PoolModel.fromJson(json);
     expect(newModel.id, model.id);
     expect(newModel.styleName, model.styleName);
     expect(newModel.isFavorite, model.isFavorite);

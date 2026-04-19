@@ -11,8 +11,8 @@ class ParallaxButton extends StatelessWidget {
   const ParallaxButton({
     super.key,
     required this.onTap,
-    this.label = 'Create New Garden Vision',
-    this.subLabel = 'Powered by Garden AI',
+    this.label = 'Create New Pool Vision',
+    this.subLabel = 'Powered by Pool AI',
     this.imagePath = 'assets/images/styles/tropical.png',
   });
 
@@ -34,7 +34,7 @@ class ParallaxButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
           boxShadow: [
             BoxShadow(
-              color: AppTheme.mossGreen.withValues(alpha: 0.3),
+              color: AppTheme.oceanBlue.withValues(alpha: 0.3),
               blurRadius: 30,
               offset: const Offset(0, 15),
             ),
@@ -110,7 +110,7 @@ class ParallaxButton extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppTheme.mintGreen.withValues(alpha: 0.9),
+                    color: AppTheme.aquaBlue.withValues(alpha: 0.9),
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
@@ -121,7 +121,7 @@ class ParallaxButton extends StatelessWidget {
                   ),
                   child: const Icon(
                     Icons.add_rounded,
-                    color: AppTheme.mossGreen,
+                    color: AppTheme.oceanBlue,
                     size: 24,
                   ),
                 ),

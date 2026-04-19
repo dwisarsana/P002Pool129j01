@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../theme/app_theme.dart';
 import '../../mock/mock_data.dart';
-import '../../models/garden_style.dart';
+import '../../models/pool_style.dart';
 import 'custom_studio_screen.dart';
 
 class StyleLibraryScreen extends StatefulWidget {
@@ -31,7 +31,7 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
     {'name': 'Wild', 'icon': Icons.nature_rounded, 'emoji': '🌿'},
   ];
 
-  List<GardenStyle> get _filteredStyles {
+  List<PoolStyle> get _filteredStyles {
     final category = _categories[_selectedCategoryIndex]['name'] as String;
     var styles = category == 'All'
         ? MockData.styles
@@ -49,7 +49,7 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
     return styles;
   }
 
-  void _showStyleDetail(GardenStyle style) {
+  void _showStyleDetail(PoolStyle style) {
     HapticFeedback.lightImpact();
     showModalBottomSheet(
       context: context,
@@ -90,7 +90,7 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F0E8),
+      backgroundColor: const Color(0xFFF8F9FA),
       body: CustomScrollView(
         slivers: [
           // Custom App Bar
@@ -237,19 +237,19 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
                           horizontal: 18, vertical: 10),
                       decoration: BoxDecoration(
                         color: isSelected
-                            ? AppTheme.mossGreen
+                            ? AppTheme.oceanBlue
                             : AppTheme.mistWhite,
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
                           color: isSelected
-                              ? AppTheme.mossGreen
+                              ? AppTheme.oceanBlue
                               : Colors.transparent,
                         ),
                         boxShadow: isSelected
                             ? [
                                 BoxShadow(
                                   color:
-                                      AppTheme.mossGreen.withValues(alpha: 0.25),
+                                      AppTheme.oceanBlue.withValues(alpha: 0.25),
                                   blurRadius: 12,
                                   offset: const Offset(0, 4),
                                 ),
@@ -364,7 +364,7 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
 }
 
 class _StyleGridCard extends StatelessWidget {
-  final GardenStyle style;
+  final PoolStyle style;
   final bool isFavorite;
   final VoidCallback onTap;
   final VoidCallback onFavorite;
@@ -527,7 +527,7 @@ class _StyleGridCard extends StatelessWidget {
                         Row(
                           children: [
                             const Icon(Icons.star_rounded,
-                                color: AppTheme.sunGlow, size: 14),
+                                color: AppTheme.sunshineYellow, size: 14),
                             const SizedBox(width: 3),
                             Text(
                               style.popularity.toStringAsFixed(1),
@@ -557,9 +557,9 @@ class _StyleGridCard extends StatelessWidget {
   Color _getDifficultyColor(String difficulty) {
     switch (difficulty) {
       case 'Easy':
-        return AppTheme.mossGreen;
+        return AppTheme.oceanBlue;
       case 'Medium':
-        return AppTheme.sunGlow;
+        return AppTheme.sunshineYellow;
       case 'Hard':
         return AppTheme.coral;
       default:
@@ -569,7 +569,7 @@ class _StyleGridCard extends StatelessWidget {
 }
 
 class _StyleListCard extends StatelessWidget {
-  final GardenStyle style;
+  final PoolStyle style;
   final bool isFavorite;
   final VoidCallback onTap;
   final VoidCallback onFavorite;
@@ -655,7 +655,7 @@ class _StyleListCard extends StatelessWidget {
                   Row(
                     children: [
                       const Icon(Icons.star_rounded,
-                          color: AppTheme.sunGlow, size: 14),
+                          color: AppTheme.sunshineYellow, size: 14),
                       const SizedBox(width: 3),
                       Text(
                         style.popularity.toStringAsFixed(1),
@@ -682,13 +682,13 @@ class _StyleListCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 3),
                         decoration: BoxDecoration(
-                          color: AppTheme.mossGreen.withValues(alpha: 0.1),
+                          color: AppTheme.oceanBlue.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
                           style.difficulty,
                           style: const TextStyle(
-                            color: AppTheme.mossGreen,
+                            color: AppTheme.oceanBlue,
                             fontSize: 10,
                             fontWeight: FontWeight.w600,
                           ),
@@ -710,7 +710,7 @@ class _StyleListCard extends StatelessWidget {
 }
 
 class _StyleDetailSheet extends StatelessWidget {
-  final GardenStyle style;
+  final PoolStyle style;
   final bool isFavorite;
   final VoidCallback onFavorite;
   final VoidCallback onSelect;
@@ -816,7 +816,7 @@ class _StyleDetailSheet extends StatelessWidget {
                           Row(
                             children: [
                               const Icon(Icons.star_rounded,
-                                  color: AppTheme.sunGlow, size: 20),
+                                  color: AppTheme.sunshineYellow, size: 20),
                               const SizedBox(width: 4),
                               Text(
                                 style.popularity.toStringAsFixed(1),
@@ -836,7 +836,7 @@ class _StyleDetailSheet extends StatelessWidget {
                           style.moodDescription,
                           style: TextStyle(
                             fontSize: 15,
-                            color: AppTheme.mossGreen.withValues(alpha: 0.8),
+                            color: AppTheme.oceanBlue.withValues(alpha: 0.8),
                             fontStyle: FontStyle.italic,
                             fontWeight: FontWeight.w500,
                           ),
@@ -866,9 +866,9 @@ class _StyleDetailSheet extends StatelessWidget {
                             icon: Icons.trending_up_rounded,
                             label: style.difficulty,
                             color: style.difficulty == 'Easy'
-                                ? AppTheme.mossGreen
+                                ? AppTheme.oceanBlue
                                 : style.difficulty == 'Medium'
-                                    ? AppTheme.sunGlow
+                                    ? AppTheme.sunshineYellow
                                     : AppTheme.coral,
                           ),
                           const SizedBox(width: 10),
@@ -899,16 +899,16 @@ class _StyleDetailSheet extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 14, vertical: 8),
                             decoration: BoxDecoration(
-                              color: AppTheme.mossGreen.withValues(alpha: 0.08),
+                              color: AppTheme.oceanBlue.withValues(alpha: 0.08),
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: AppTheme.mossGreen.withValues(alpha: 0.15),
+                                color: AppTheme.oceanBlue.withValues(alpha: 0.15),
                               ),
                             ),
                             child: Text(
                               tag,
                               style: const TextStyle(
-                                color: AppTheme.mossGreen,
+                                color: AppTheme.oceanBlue,
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -937,12 +937,12 @@ class _StyleDetailSheet extends StatelessWidget {
                               Container(
                                 padding: const EdgeInsets.all(6),
                                 decoration: BoxDecoration(
-                                  color: AppTheme.mintGreen.withValues(alpha: 0.15),
+                                  color: AppTheme.aquaBlue.withValues(alpha: 0.15),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: const Icon(
                                   Icons.check_rounded,
-                                  color: AppTheme.mossGreen,
+                                  color: AppTheme.oceanBlue,
                                   size: 14,
                                 ),
                               ),
@@ -968,13 +968,13 @@ class _StyleDetailSheet extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: onSelect,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppTheme.mossGreen,
+                            backgroundColor: AppTheme.oceanBlue,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18),
                             ),
                             elevation: 4,
                             shadowColor:
-                                AppTheme.mossGreen.withValues(alpha: 0.3),
+                                AppTheme.oceanBlue.withValues(alpha: 0.3),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

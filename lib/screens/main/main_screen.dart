@@ -45,7 +45,7 @@ class _MainScreenState extends State<MainScreen> {
           // Background with sunlight
           Container(
             decoration: const BoxDecoration(
-              color: AppTheme.warmSand,
+              color: AppTheme.poolTileWhite,
             ),
           ),
           const Positioned.fill(child: SunlightOverlay()),

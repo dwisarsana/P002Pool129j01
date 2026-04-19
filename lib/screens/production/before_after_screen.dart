@@ -2,13 +2,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../theme/app_theme.dart';
-import '../../models/garden_style.dart';
+import '../../models/pool_style.dart';
 import 'rendering_screen.dart';
 
 class BeforeAfterScreen extends StatefulWidget {
   final String originalPath;
   final String resultPath;
-  final GardenStyle style;
+  final PoolStyle style;
   final Map<String, dynamic> settings;
 
   const BeforeAfterScreen({
@@ -76,7 +76,7 @@ class _BeforeAfterScreenState extends State<BeforeAfterScreen> {
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: AppTheme.sunGlow.withValues(alpha: 0.8),
+                            color: AppTheme.sunshineYellow.withValues(alpha: 0.8),
                             blurRadius: 15,
                             spreadRadius: 2,
                           ),
@@ -110,7 +110,7 @@ class _BeforeAfterScreenState extends State<BeforeAfterScreen> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.mossGreen,
+                  backgroundColor: AppTheme.oceanBlue,
                   padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 ),
@@ -141,7 +141,7 @@ class _BeforeAfterScreenState extends State<BeforeAfterScreen> {
             child: Text(
               widget.style.name.toUpperCase(),
               style: TextStyle(
-                color: AppTheme.sunGlow.withValues(alpha: 0.9),
+                color: AppTheme.sunshineYellow.withValues(alpha: 0.9),
                 fontWeight: FontWeight.bold,
                 shadows: const [Shadow(blurRadius: 5, color: Colors.black)],
               ),

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   // Primary Colors
-  static const Color mossGreen = Color(0xFF2D5A27);
-  static const Color leafGreen = Color(0xFF4CAF50);
-  static const Color mintGreen = Color(0xFF81C784);
+  static const Color oceanBlue = Color(0xFF0077B6);
+  static const Color waterBlue = Color(0xFF00B4D8);
+  static const Color aquaBlue = Color(0xFF90E0EF);
   static const Color deepSoil = Color(0xFF212121);
-  static const Color warmSand = Color(0xFFF5F0E8);
+  static const Color poolTileWhite = Color(0xFFF8F9FA);
   static const Color mistWhite = Color(0xFFFAFAFA);
-  static const Color sunGlow = Color(0xFFFFB74D);
+  static const Color sunshineYellow = Color(0xFFFFD166);
   static const Color skyBlue = Color(0xFF64B5F6);
   static const Color roseGold = Color(0xFFE8B4B8);
   static const Color lavender = Color(0xFFB39DDB);
@@ -18,8 +18,8 @@ class AppTheme {
   static const Color cream = Color(0xFFFFF8E1);
 
   // Gradients for existing widgets compatibility
-  static const LinearGradient leafGradient = LinearGradient(
-    colors: [leafGreen, mossGreen],
+  static const LinearGradient waterGradient = LinearGradient(
+    colors: [waterBlue, oceanBlue],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
@@ -32,9 +32,9 @@ class AppTheme {
 
   static ThemeData get theme => ThemeData(
         fontFamily: 'SF Pro Display',
-        scaffoldBackgroundColor: warmSand,
+        scaffoldBackgroundColor: poolTileWhite,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: mossGreen,
+          seedColor: oceanBlue,
           brightness: Brightness.light,
         ),
         textTheme: const TextTheme(

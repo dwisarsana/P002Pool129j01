@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../theme/app_theme.dart';
-import '../../models/garden_style.dart';
+import '../../models/pool_style.dart';
 import '../../mock/mock_data.dart';
 import '../../widgets/glass_container.dart';
 import 'generating_screen.dart';
@@ -11,7 +11,7 @@ import '../../src/constant.dart';
 
 class CustomStudioScreen extends StatefulWidget {
   final String imagePath;
-  final GardenStyle selectedStyle;
+  final PoolStyle selectedStyle;
 
   const CustomStudioScreen({
     super.key,
@@ -27,10 +27,10 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
     with TickerProviderStateMixin {
   // Core Settings
   double _density = 0.5;
-  double _flowers = 0.3;
+  double _tiles = 0.3;
   double _water = 0.0;
   double _sunlight = 0.7;
-  double _treeSize = 0.5;
+  double _poolSize = 0.5;
   double _colorVibrancy = 0.6;
 
   // Selection States
@@ -53,7 +53,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
   final List<Map<String, dynamic>> _timeData = [
     {'name': 'Dawn', 'icon': '🌅', 'color': const Color(0xFFE1BEE7)},
     {'name': 'Morning', 'icon': '🌤️', 'color': const Color(0xFFFFF176)},
-    {'name': 'Golden Hour', 'icon': '🌇', 'color': const Color(0xFFFFB74D)},
+    {'name': 'Golden Hour', 'icon': '🌇', 'color': const Color(0xFFFFD166)},
     {'name': 'Sunset', 'icon': '🌆', 'color': const Color(0xFFFF8A65)},
     {'name': 'Twilight', 'icon': '🌙', 'color': const Color(0xFF9FA8DA)},
     {'name': 'Night', 'icon': '🌃', 'color': const Color(0xFF5C6BC0)},
@@ -61,7 +61,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
 
   final List<String> _sectionTabs = [
     'Environment',
-    'Plants',
+    'Pools',
     'Hardscape',
     'Lighting',
     'Water',
@@ -86,10 +86,10 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
 
   Map<String, dynamic> get _allSettings => {
         'density': _density,
-        'flowers': _flowers,
+        'tiles': _tiles,
         'water': _water,
         'sunlight': _sunlight,
-        'treeSize': _treeSize,
+        'poolSize': _poolSize,
         'colorVibrancy': _colorVibrancy,
         'season': _season,
         'timeOfDay': _timeOfDay,
@@ -183,10 +183,10 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                           HapticFeedback.mediumImpact();
                           setState(() {
                             _density = 0.5;
-                            _flowers = 0.3;
+                            _tiles = 0.3;
                             _water = 0.0;
                             _sunlight = 0.7;
-                            _treeSize = 0.5;
+                            _poolSize = 0.5;
                             _colorVibrancy = 0.6;
                             _season = 'Spring';
                             _timeOfDay = 'Golden Hour';
@@ -230,12 +230,12 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                   child: Row(
                     children: [
                       Icon(Icons.auto_awesome_rounded,
-                          color: AppTheme.sunGlow.withValues(alpha: 0.8),
+                          color: AppTheme.sunshineYellow.withValues(alpha: 0.8),
                           size: 16),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Adjust every detail to create your perfect ${widget.selectedStyle.name.toLowerCase()} garden',
+                          'Adjust every detail to create your perfect ${widget.selectedStyle.name.toLowerCase()} pool',
                           style: TextStyle(
                             color: Colors.white.withValues(alpha: 0.6),
                             fontSize: 12,
@@ -282,7 +282,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                         child: TabBar(
                           controller: _tabController,
                           isScrollable: true,
-                          indicatorColor: AppTheme.mossGreen,
+                          indicatorColor: AppTheme.oceanBlue,
                           indicatorWeight: 3,
                           indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
                           labelColor: Colors.white,
@@ -308,7 +308,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                           controller: _tabController,
                           children: [
                             _buildEnvironmentTab(),
-                            _buildPlantsTab(),
+                            _buildPoolsTab(),
                             _buildHardscapeTab(),
                             _buildLightingTab(),
                             _buildWaterTab(),
@@ -342,13 +342,13 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: AppTheme.mossGreen,
+                              backgroundColor: AppTheme.oceanBlue,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18),
                               ),
                               elevation: 6,
                               shadowColor:
-                                  AppTheme.mossGreen.withValues(alpha: 0.4),
+                                  AppTheme.oceanBlue.withValues(alpha: 0.4),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -357,7 +357,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                                     color: Colors.white, size: 20),
                                 SizedBox(width: 10),
                                 Text(
-                                  'Generate Garden Design',
+                                  'Generate Pool Design',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
@@ -536,7 +536,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
             label: 'Sunlight Intensity',
             value: _sunlight,
             icon: Icons.wb_sunny_rounded,
-            activeColor: AppTheme.sunGlow,
+            activeColor: AppTheme.sunshineYellow,
             onChanged: (v) => setState(() => _sunlight = v),
           ),
 
@@ -555,52 +555,52 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
   }
 
   // ============ PLANTS TAB ============
-  Widget _buildPlantsTab() {
+  Widget _buildPoolsTab() {
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _SliderRow(
-            label: 'Plant Density',
+            label: 'Pool Density',
             value: _density,
             icon: Icons.grass_rounded,
-            activeColor: AppTheme.mossGreen,
+            activeColor: AppTheme.oceanBlue,
             onChanged: (v) => setState(() => _density = v),
             leftLabel: 'Sparse',
             rightLabel: 'Dense',
           ),
           const SizedBox(height: 8),
           _SliderRow(
-            label: 'Flower Coverage',
-            value: _flowers,
+            label: 'Tile Coverage',
+            value: _tiles,
             icon: Icons.local_florist_rounded,
             activeColor: AppTheme.roseGold,
-            onChanged: (v) => setState(() => _flowers = v),
+            onChanged: (v) => setState(() => _tiles = v),
             leftLabel: 'Subtle',
             rightLabel: 'Abundant',
           ),
           const SizedBox(height: 8),
           _SliderRow(
-            label: 'Tree Scale',
-            value: _treeSize,
+            label: 'Pool Scale',
+            value: _poolSize,
             icon: Icons.park_rounded,
             activeColor: const Color(0xFF66BB6A),
-            onChanged: (v) => setState(() => _treeSize = v),
+            onChanged: (v) => setState(() => _poolSize = v),
             leftLabel: 'Small',
             rightLabel: 'Grand',
           ),
 
           const SizedBox(height: 20),
 
-          _SectionLabel(label: 'Plant Categories', icon: Icons.category_rounded),
+          _SectionLabel(label: 'Pool Features', icon: Icons.category_rounded),
           const SizedBox(height: 12),
 
-          // Plant categories grid
+          // Pool categories grid
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: MockData.plantCategories.map((cat) {
+            children: MockData.poolFeatures.map((cat) {
               return Container(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 14, vertical: 10),
@@ -675,12 +675,12 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                     margin: const EdgeInsets.only(right: 10),
                     decoration: BoxDecoration(
                       color: isSelected
-                          ? AppTheme.mossGreen.withValues(alpha: 0.15)
+                          ? AppTheme.oceanBlue.withValues(alpha: 0.15)
                           : Colors.white.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(18),
                       border: Border.all(
                         color: isSelected
-                            ? AppTheme.mossGreen.withValues(alpha: 0.5)
+                            ? AppTheme.oceanBlue.withValues(alpha: 0.5)
                             : Colors.white.withValues(alpha: 0.08),
                         width: isSelected ? 2 : 1,
                       ),
@@ -717,7 +717,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
           const SizedBox(height: 24),
 
           // Additional hardscape options
-          _SectionLabel(label: 'Garden Structures', icon: Icons.fence_rounded),
+          _SectionLabel(label: 'Pool Structures', icon: Icons.fence_rounded),
           const SizedBox(height: 12),
           Wrap(
             spacing: 8,
@@ -728,7 +728,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
               _ToggleChip(label: '🔥 Fire Pit', isOn: false),
               _ToggleChip(label: '🏗️ Raised Beds', isOn: true),
               _ToggleChip(label: '🧱 Retaining Wall', isOn: false),
-              _ToggleChip(label: '🚪 Garden Gate', isOn: false),
+              _ToggleChip(label: '🚪 Pool Gate', isOn: false),
             ],
           ),
         ],
@@ -765,12 +765,12 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: isSelected
-                          ? AppTheme.sunGlow.withValues(alpha: 0.15)
+                          ? AppTheme.sunshineYellow.withValues(alpha: 0.15)
                           : Colors.white.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(18),
                       border: Border.all(
                         color: isSelected
-                            ? AppTheme.sunGlow.withValues(alpha: 0.5)
+                            ? AppTheme.sunshineYellow.withValues(alpha: 0.5)
                             : Colors.white.withValues(alpha: 0.08),
                         width: isSelected ? 2 : 1,
                       ),
@@ -803,7 +803,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                           option['temp'] as String,
                           style: TextStyle(
                             color: isSelected
-                                ? AppTheme.sunGlow
+                                ? AppTheme.sunshineYellow
                                 : Colors.white30,
                             fontSize: 9,
                             fontWeight: FontWeight.w500,
@@ -823,7 +823,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
             label: 'Brightness',
             value: 0.6,
             icon: Icons.brightness_6_rounded,
-            activeColor: AppTheme.sunGlow,
+            activeColor: AppTheme.sunshineYellow,
             onChanged: (_) {},
             leftLabel: 'Dim',
             rightLabel: 'Bright',
@@ -1083,12 +1083,12 @@ class _ToggleChipState extends State<_ToggleChip> {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         decoration: BoxDecoration(
           color: _on
-              ? AppTheme.mossGreen.withValues(alpha: 0.15)
+              ? AppTheme.oceanBlue.withValues(alpha: 0.15)
               : Colors.white.withValues(alpha: 0.05),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: _on
-                ? AppTheme.mossGreen.withValues(alpha: 0.4)
+                ? AppTheme.oceanBlue.withValues(alpha: 0.4)
                 : Colors.white.withValues(alpha: 0.08),
           ),
         ),

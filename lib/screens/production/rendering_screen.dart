@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../theme/app_theme.dart';
-import '../../models/garden_style.dart';
+import '../../models/pool_style.dart';
 import 'result_screen.dart';
 
 class RenderingScreen extends StatefulWidget {
   final String originalPath;
   final String resultPath;
-  final GardenStyle style;
+  final PoolStyle style;
   final Map<String, dynamic> settings;
 
   const RenderingScreen({
@@ -49,22 +49,22 @@ class _RenderingScreenState extends State<RenderingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.warmSand,
+      backgroundColor: AppTheme.poolTileWhite,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Growing Plant Animation
+            // Growing Pool Animation
             SizedBox(
               height: 150,
               width: 150,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  const Icon(Icons.wb_sunny_rounded, size: 80, color: AppTheme.sunGlow)
+                  const Icon(Icons.wb_sunny_rounded, size: 80, color: AppTheme.sunshineYellow)
                       .animate(onPlay: (c) => c.repeat())
                       .rotate(duration: 4.seconds),
-                  const Icon(Icons.eco_rounded, size: 100, color: AppTheme.mossGreen)
+                  const Icon(Icons.eco_rounded, size: 100, color: AppTheme.oceanBlue)
                       .animate()
                       .scale(begin: const Offset(0, 0), end: const Offset(1, 1), duration: 2.seconds, curve: Curves.elasticOut)
                       .then()
@@ -93,7 +93,7 @@ class _RenderingScreenState extends State<RenderingScreen> {
             Text(
               "Cultivating Your Vision...",
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: AppTheme.mossGreen,
+                color: AppTheme.oceanBlue,
                 fontWeight: FontWeight.bold,
               ),
             ).animate().fadeIn().shimmer(duration: 2.seconds),

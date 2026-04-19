@@ -29,7 +29,7 @@ class _UploadScreenState extends State<UploadScreen>
       'icon': Icons.wb_sunny_rounded,
       'title': 'Good Lighting',
       'desc': 'Natural daylight works best for accurate analysis',
-      'color': const Color(0xFFFFB74D),
+      'color': const Color(0xFFFFD166),
     },
     {
       'icon': Icons.crop_free_rounded,
@@ -41,12 +41,12 @@ class _UploadScreenState extends State<UploadScreen>
       'icon': Icons.straighten_rounded,
       'title': 'Straight Angle',
       'desc': 'Hold your phone level for the best perspective',
-      'color': const Color(0xFF81C784),
+      'color': const Color(0xFF90E0EF),
     },
     {
       'icon': Icons.hd_rounded,
       'title': 'High Resolution',
-      'desc': 'Clear photos produce more detailed garden designs',
+      'desc': 'Clear photos produce more detailed pool designs',
       'color': const Color(0xFFB39DDB),
     },
   ];
@@ -166,7 +166,7 @@ class _UploadScreenState extends State<UploadScreen>
             ),
           ),
           Text(
-            'Add Your Garden Photo',
+            'Add Your Pool Photo',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
@@ -245,15 +245,15 @@ class _UploadScreenState extends State<UploadScreen>
             Container(
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                color: AppTheme.mossGreen.withValues(alpha: 0.1),
+                color: AppTheme.oceanBlue.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Icon(Icons.eco_rounded,
-                  color: AppTheme.mossGreen, size: 18),
+                  color: AppTheme.oceanBlue, size: 18),
             ),
             const SizedBox(width: 10),
             Text(
-              "Upload Garden",
+              "Upload Pool",
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
@@ -275,7 +275,7 @@ class _UploadScreenState extends State<UploadScreen>
                   ),
                 ],
               ),
-              child: const Icon(Icons.home_rounded, color: AppTheme.mossGreen, size: 20),
+              child: const Icon(Icons.home_rounded, color: AppTheme.oceanBlue, size: 20),
             ),
             onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
           ),
@@ -291,7 +291,7 @@ class _UploadScreenState extends State<UploadScreen>
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color(0xFFF5F0E8),
+                  Color(0xFFF8F9FA),
                   Color(0xFFEDE7DB),
                   Color(0xFFE8E0D0),
                 ],
@@ -309,7 +309,7 @@ class _UploadScreenState extends State<UploadScreen>
               height: 200,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: AppTheme.mossGreen.withValues(alpha: 0.04),
+                color: AppTheme.oceanBlue.withValues(alpha: 0.04),
               ),
             ),
           ),
@@ -321,7 +321,7 @@ class _UploadScreenState extends State<UploadScreen>
               height: 250,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: AppTheme.sunGlow.withValues(alpha: 0.04),
+                color: AppTheme.sunshineYellow.withValues(alpha: 0.04),
               ),
             ),
           ),
@@ -351,14 +351,14 @@ class _UploadScreenState extends State<UploadScreen>
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
-                      color: AppTheme.mossGreen.withValues(alpha: 0.08),
+                      color: AppTheme.oceanBlue.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      "AI-powered garden design in seconds",
+                      "AI-powered pool design in seconds",
                       style:
                           Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: AppTheme.mossGreen,
+                                color: AppTheme.oceanBlue,
                                 fontWeight: FontWeight.w500,
                               ),
                     ),
@@ -380,14 +380,14 @@ class _UploadScreenState extends State<UploadScreen>
                           borderRadius: BorderRadius.circular(32),
                           border: Border.all(
                             color: _isAnalyzing
-                                ? AppTheme.mossGreen
-                                : AppTheme.mossGreen.withValues(alpha: 0.2),
+                                ? AppTheme.oceanBlue
+                                : AppTheme.oceanBlue.withValues(alpha: 0.2),
                             width: _isAnalyzing ? 2 : 1.5,
                           ),
                           boxShadow: [
                             BoxShadow(
                               color: _isAnalyzing
-                                  ? AppTheme.mossGreen.withValues(alpha: 0.15)
+                                  ? AppTheme.oceanBlue.withValues(alpha: 0.15)
                                   : Colors.black.withValues(alpha: 0.05),
                               blurRadius: _isAnalyzing ? 30 : 20,
                               offset: const Offset(0, 8),
@@ -425,7 +425,7 @@ class _UploadScreenState extends State<UploadScreen>
                                             strokeWidth: 3,
                                             valueColor:
                                                 const AlwaysStoppedAnimation(
-                                                    AppTheme.mossGreen),
+                                                    AppTheme.oceanBlue),
                                             backgroundColor: Colors
                                                 .white
                                                 .withValues(alpha: 0.2),
@@ -452,7 +452,7 @@ class _UploadScreenState extends State<UploadScreen>
                                 // Hero background image
                                 Positioned.fill(
                                   child: Image.asset(
-                                    'assets/images/AI Garden Transformation.jpeg',
+                                    'assets/images/AI Pool Transformation.jpeg',
                                     fit: BoxFit.cover,
                                   ).animate().blur(begin: const Offset(4, 4), end: Offset.zero, duration: 1.seconds).scale(begin: const Offset(1.1, 1.1), end: const Offset(1.0, 1.0), duration: 1.seconds),
                                 ),
@@ -479,7 +479,7 @@ class _UploadScreenState extends State<UploadScreen>
                                     Container(
                                       padding: const EdgeInsets.all(20),
                                       decoration: BoxDecoration(
-                                        color: AppTheme.mossGreen
+                                        color: AppTheme.oceanBlue
                                             .withValues(alpha: 0.1),
                                         shape: BoxShape.circle,
                                       ),
@@ -487,7 +487,7 @@ class _UploadScreenState extends State<UploadScreen>
                                         padding:
                                             const EdgeInsets.all(16),
                                         decoration: BoxDecoration(
-                                          color: AppTheme.mossGreen
+                                          color: AppTheme.oceanBlue
                                               .withValues(alpha: 0.15),
                                           shape: BoxShape.circle,
                                         ),
@@ -625,8 +625,8 @@ class _UploadScreenState extends State<UploadScreen>
                         margin: const EdgeInsets.symmetric(horizontal: 3),
                         decoration: BoxDecoration(
                           color: _currentTipIndex == index
-                              ? AppTheme.mossGreen
-                              : AppTheme.mossGreen.withValues(alpha: 0.2),
+                              ? AppTheme.oceanBlue
+                              : AppTheme.oceanBlue.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(3),
                         ),
                       );

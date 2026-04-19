@@ -4,7 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import '../../theme/app_theme.dart';
 import '../../services/storage_service.dart';
-import '../../models/garden_model.dart';
+import '../../models/pool_model.dart';
 import '../../mock/mock_data.dart';
 import '../../widgets/glass_container.dart';
 
@@ -16,39 +16,39 @@ class AnalyticsScreen extends StatefulWidget {
 }
 
 class _AnalyticsScreenState extends State<AnalyticsScreen> {
-  late Future<List<GardenModel>> _gardensFuture;
+  late Future<List<PoolModel>> _poolsFuture;
 
   @override
   void initState() {
     super.initState();
-    _gardensFuture = context.read<StorageService>().loadGardens();
+    _poolsFuture = context.read<StorageService>().loadPools();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.warmSand,
+      backgroundColor: AppTheme.poolTileWhite,
       appBar: AppBar(
-        title: const Text("Garden Profile"),
+        title: const Text("Pool Profile"),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: FutureBuilder<List<GardenModel>>(
-        future: _gardensFuture,
+      body: FutureBuilder<List<PoolModel>>(
+        future: _poolsFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final gardens = snapshot.data ?? [];
-          final allGardens = [...gardens, ...MockData.initialHistory];
+          final pools = snapshot.data ?? [];
+          final allPools = [...pools, ...MockData.initialHistory];
           
           // Analytics Logic
-          int total = allGardens.length;
+          int total = allPools.length;
           
           // Style Distribution
           final styleCounts = <String, int>{};
-          for (var g in allGardens) {
+          for (var g in allPools) {
             styleCounts[g.styleName] = (styleCounts[g.styleName] ?? 0) + 1;
           }
           
@@ -56,7 +56,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
 
           // Season Distribution (mock settings check)
           final seasonCounts = <String, int>{};
-          for (var g in allGardens) {
+          for (var g in allPools) {
             final season = g.settings['season'] as String? ?? 'Unknown';
             seasonCounts[season] = (seasonCounts[season] ?? 0) + 1;
           }
@@ -92,8 +92,8 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                       sections: styleCounts.entries.map((e) {
                         final index = styleCounts.keys.toList().indexOf(e.key);
                         final color = [
-                          AppTheme.mossGreen,
-                          AppTheme.sunGlow,
+                          AppTheme.oceanBlue,
+                          AppTheme.sunshineYellow,
                           const Color(0xFF8B735B),
                           const Color(0xFF3E5C3E),
                           const Color(0xFFD4B483),
@@ -120,8 +120,8 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                   children: styleCounts.keys.map((key) {
                     final index = styleCounts.keys.toList().indexOf(key);
                     final color = [
-                      AppTheme.mossGreen,
-                      AppTheme.sunGlow,
+                      AppTheme.oceanBlue,
+                      AppTheme.sunshineYellow,
                       const Color(0xFF8B735B),
                       const Color(0xFF3E5C3E),
                       const Color(0xFFD4B483),
@@ -168,7 +168,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                           barRods: [
                             BarChartRodData(
                               toY: e.value.toDouble(),
-                              color: AppTheme.mossGreen,
+                              color: AppTheme.oceanBlue,
                               width: 16,
                               borderRadius: BorderRadius.circular(4),
                             ),
@@ -202,7 +202,7 @@ class _StatCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          Icon(icon, size: 30, color: AppTheme.mossGreen),
+          Icon(icon, size: 30, color: AppTheme.oceanBlue),
           const SizedBox(height: 10),
           Text(value, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           Text(label, style: const TextStyle(fontSize: 12, color: Colors.black54)),

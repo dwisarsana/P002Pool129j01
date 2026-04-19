@@ -1,5 +1,5 @@
 // lib/screens/onboarding/onboarding_screen.dart
-// Garden AI — Onboarding Screen (Enhanced Survey for User Retention)
+// Pool AI — Onboarding Screen (Enhanced Survey for User Retention)
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,11 +23,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   final TextEditingController _nameCtl = TextEditingController();
   bool _isFinalizing = false;
 
-  // ── 7 Survey questions for garden personalization ──
+  // ── 7 Survey questions for pool personalization ──
   final List<_Question> _questions = [
     _Question(
       keyName: 'q_type',
-      title: 'What\'s your garden type?',
+      title: 'What\'s your pool type?',
       subtitle: 'We\'ll tailor AI designs to fit your landscape.',
       icon: Icons.eco_rounded,
       accentEmoji: '🌿',
@@ -48,7 +48,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       options: [
         _Option('Modern Sanctuary', Icons.spa_rounded),
         _Option('English Cottage', Icons.villa_rounded),
-        _Option('Zen Garden', Icons.self_improvement_rounded),
+        _Option('Zen Pool', Icons.self_improvement_rounded),
         _Option('Productive Vegetable', Icons.agriculture_rounded),
         _Option('Entertaining Space', Icons.groups_rounded),
       ],
@@ -63,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         _Option('Tropical Jungle', Icons.wb_sunny_rounded),
         _Option('Minimalist Desert', Icons.terrain_rounded),
         _Option('Mediterranean', Icons.sunny_snowing),
-        _Option('Wildflower Meadow', Icons.filter_vintage_rounded),
+        _Option('Wildtile Meadow', Icons.filter_vintage_rounded),
         _Option('Geometric Modern', Icons.architecture_rounded),
       ],
     ),
@@ -84,7 +84,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     _Question(
       keyName: 'q_timeline',
       title: 'Project timeline?',
-      subtitle: 'When would you like to start planting?',
+      subtitle: 'When would you like to start pooling?',
       icon: Icons.calendar_month_rounded,
       accentEmoji: '📅',
       options: [
@@ -111,7 +111,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     ),
     _Question(
       keyName: 'q_usage',
-      title: 'Main garden usage?',
+      title: 'Main pool usage?',
       subtitle: 'Helps us design for your lifestyle.',
       icon: Icons.beach_access_rounded,
       accentEmoji: '🍹',
@@ -223,7 +223,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppTheme.mossGreen.withValues(alpha: 0.06),
+                    AppTheme.oceanBlue.withValues(alpha: 0.06),
                     AppTheme.charcoal,
                     AppTheme.charcoal,
                   ],
@@ -242,7 +242,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       Image.asset('assets/icon.png', width: 30, height: 30),
                       const SizedBox(width: 10),
                       const Text(
-                        'GARDEN AI',
+                        'POOL AI',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -285,8 +285,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                             decoration: BoxDecoration(
                               color: isCompleted || isCurrent
                                   ? (isCurrent
-                                        ? AppTheme.mossGreen.withValues(alpha: 0.7)
-                                        : AppTheme.mossGreen)
+                                        ? AppTheme.oceanBlue.withValues(alpha: 0.7)
+                                        : AppTheme.oceanBlue)
                                   : Colors.white.withValues(alpha: 0.07),
                               borderRadius: BorderRadius.circular(2),
                             ),
@@ -348,13 +348,13 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                             height: 52,
                             decoration: BoxDecoration(
                               color: canContinue
-                                  ? AppTheme.mossGreen
+                                  ? AppTheme.oceanBlue
                                   : Colors.white.withValues(alpha: 0.07),
                               borderRadius: BorderRadius.circular(15),
                               boxShadow: canContinue
                                   ? [
                                       BoxShadow(
-                                        color: AppTheme.mossGreen.withValues(alpha: 0.35),
+                                        color: AppTheme.oceanBlue.withValues(alpha: 0.35),
                                         blurRadius: 20,
                                         offset: const Offset(0, 6),
                                       ),
@@ -404,15 +404,15 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         width: 72,
                         height: 72,
                         decoration: BoxDecoration(
-                          color: AppTheme.mossGreen.withValues(alpha: 0.1),
+                          color: AppTheme.oceanBlue.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: AppTheme.mossGreen.withValues(alpha: 0.3)),
+                          border: Border.all(color: AppTheme.oceanBlue.withValues(alpha: 0.3)),
                         ),
-                        child: const Icon(Icons.auto_awesome_rounded, color: AppTheme.mossGreen, size: 32),
+                        child: const Icon(Icons.auto_awesome_rounded, color: AppTheme.oceanBlue, size: 32),
                       ),
                       const SizedBox(height: 24),
                       const Text(
-                        'Building your\npersonalized garden...',
+                        'Building your\npersonalized pool...',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -422,7 +422,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         ),
                       ),
                       const SizedBox(height: 20),
-                      const CupertinoActivityIndicator(radius: 12, color: AppTheme.mossGreen),
+                      const CupertinoActivityIndicator(radius: 12, color: AppTheme.oceanBlue),
                     ],
                   ),
                 ),
@@ -474,7 +474,7 @@ class _IntroPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(32),
               boxShadow: [
                 BoxShadow(
-                  color: AppTheme.mossGreen.withValues(alpha: 0.2),
+                  color: AppTheme.oceanBlue.withValues(alpha: 0.2),
                   blurRadius: 30,
                   offset: const Offset(0, 10),
                 ),
@@ -483,20 +483,20 @@ class _IntroPage extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(32),
               child: Image.asset(
-                'assets/images/AI Garden Transformation.jpeg',
+                'assets/images/AI Pool Transformation.jpeg',
                 fit: BoxFit.cover,
               ),
             ),
           ),
           const SizedBox(height: 36),
           const Text(
-            'Redesign Your\nGarden with AI',
+            'Redesign Your\nPool with AI',
             style: TextStyle(color: Colors.white, fontSize: 34, fontWeight: FontWeight.w800, height: 1.15, letterSpacing: -0.8),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 14),
           Text(
-            'Upload a photo and let AI instantly redesign your garden — from tropical jungle to zen sanctuary.',
+            'Upload a photo and let AI instantly redesign your pool — from tropical jungle to zen sanctuary.',
             style: TextStyle(color: Colors.white.withValues(alpha: 0.55), fontSize: 15.5, height: 1.55),
             textAlign: TextAlign.center,
           ),
@@ -524,11 +524,11 @@ class _IntroFeature extends StatelessWidget {
         Container(
           width: 36, height: 36,
           decoration: BoxDecoration(
-            color: AppTheme.mossGreen.withValues(alpha: 0.1),
+            color: AppTheme.oceanBlue.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: AppTheme.mossGreen.withValues(alpha: 0.2)),
+            border: Border.all(color: AppTheme.oceanBlue.withValues(alpha: 0.2)),
           ),
-          child: Icon(icon, size: 17, color: AppTheme.mossGreen),
+          child: Icon(icon, size: 17, color: AppTheme.oceanBlue),
         ),
         const SizedBox(width: 14),
         Text(text, style: TextStyle(color: Colors.white.withValues(alpha: 0.85), fontSize: 14.5, fontWeight: FontWeight.w500)),
@@ -551,11 +551,11 @@ class _NamePage extends StatelessWidget {
           Container(
             width: 76, height: 76,
             decoration: BoxDecoration(
-              color: AppTheme.mossGreen.withValues(alpha: 0.1),
+              color: AppTheme.oceanBlue.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(22),
-              border: Border.all(color: AppTheme.mossGreen.withValues(alpha: 0.25)),
+              border: Border.all(color: AppTheme.oceanBlue.withValues(alpha: 0.25)),
             ),
-            child: const Icon(CupertinoIcons.person, size: 34, color: AppTheme.mossGreen),
+            child: const Icon(CupertinoIcons.person, size: 34, color: AppTheme.oceanBlue),
           ),
           const SizedBox(height: 28),
           const Text('What\'s your name?', style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w800, letterSpacing: -0.5)),
@@ -571,10 +571,10 @@ class _NamePage extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.05),
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: AppTheme.mossGreen.withValues(alpha: 0.25), width: 1.5),
+              border: Border.all(color: AppTheme.oceanBlue.withValues(alpha: 0.25), width: 1.5),
             ),
             textAlign: TextAlign.center,
-            cursorColor: AppTheme.mossGreen,
+            cursorColor: AppTheme.oceanBlue,
           ),
         ],
       ),
@@ -601,11 +601,11 @@ class _QuestionPage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
-              color: AppTheme.mossGreen.withValues(alpha: 0.1),
+              color: AppTheme.oceanBlue.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: AppTheme.mossGreen.withValues(alpha: 0.2)),
+              border: Border.all(color: AppTheme.oceanBlue.withValues(alpha: 0.2)),
             ),
-            child: Text('Question $questionNumber of $totalQuestions', style: const TextStyle(color: AppTheme.mossGreen, fontSize: 11.5, fontWeight: FontWeight.w600, letterSpacing: 0.5)),
+            child: Text('Question $questionNumber of $totalQuestions', style: const TextStyle(color: AppTheme.oceanBlue, fontSize: 11.5, fontWeight: FontWeight.w600, letterSpacing: 0.5)),
           ),
           const SizedBox(height: 20),
           Row(
@@ -630,16 +630,16 @@ class _QuestionPage extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
                 decoration: BoxDecoration(
-                  color: isSelected ? AppTheme.mossGreen.withValues(alpha: 0.12) : Colors.white.withValues(alpha: 0.04),
+                  color: isSelected ? AppTheme.oceanBlue.withValues(alpha: 0.12) : Colors.white.withValues(alpha: 0.04),
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: isSelected ? AppTheme.mossGreen.withValues(alpha: 0.5) : Colors.white.withValues(alpha: 0.08), width: isSelected ? 1.5 : 1),
+                  border: Border.all(color: isSelected ? AppTheme.oceanBlue.withValues(alpha: 0.5) : Colors.white.withValues(alpha: 0.08), width: isSelected ? 1.5 : 1),
                 ),
                 child: Row(
                   children: [
-                    Icon(opt.icon, color: isSelected ? AppTheme.mossGreen : Colors.white.withValues(alpha: 0.35), size: 22),
+                    Icon(opt.icon, color: isSelected ? AppTheme.oceanBlue : Colors.white.withValues(alpha: 0.35), size: 22),
                     const SizedBox(width: 14),
                     Expanded(child: Text(opt.label, style: TextStyle(color: isSelected ? Colors.white : Colors.white.withValues(alpha: 0.7), fontSize: 15, fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500))),
-                    if (isSelected) const Icon(Icons.check_circle_rounded, color: AppTheme.mossGreen, size: 18),
+                    if (isSelected) const Icon(Icons.check_circle_rounded, color: AppTheme.oceanBlue, size: 18),
                   ],
                 ),
               ),
