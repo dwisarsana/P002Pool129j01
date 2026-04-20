@@ -1,4 +1,4 @@
-// Garden AI — Splash Screen (Enhanced UI)
+// Pool AI — Splash Screen (Enhanced UI)
 
 import 'dart:async';
 import 'dart:math' as math;
@@ -19,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-  String _loadingText = 'Starting Garden AI...';
+  String _loadingText = 'Starting Pool AI...';
   int _loadingStep = 0;
 
   late final AnimationController _logoScale;
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   static const _loadingSteps = [
     'Analyzing landscape layout...',
-    'Preparing garden styles...',
+    'Preparing pool styles...',
     'Loading AI growth models...',
     'Setting up your sanctuary...',
     'Almost ready...',
@@ -153,7 +153,7 @@ class _SplashScreenState extends State<SplashScreen>
               builder: (_, __) => CustomPaint(
                 painter: _MultiGlowPainter(
                   progress: _shimmer.value,
-                  color: AppTheme.mossGreen,
+                  color: AppTheme.oceanBlue,
                 ),
               ),
             ),
@@ -166,7 +166,7 @@ class _SplashScreenState extends State<SplashScreen>
               builder: (_, __) => CustomPaint(
                 painter: _ParticlePainter(
                   progress: _particleCtrl.value,
-                  color: AppTheme.mossGreen,
+                  color: AppTheme.oceanBlue,
                 ),
               ),
             ),
@@ -201,7 +201,7 @@ class _SplashScreenState extends State<SplashScreen>
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: AppTheme.mossGreen.withValues(
+                              color: AppTheme.oceanBlue.withValues(
                                 alpha:
                                     0.06 +
                                     math
@@ -223,7 +223,7 @@ class _SplashScreenState extends State<SplashScreen>
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: AppTheme.mossGreen.withValues(
+                              color: AppTheme.oceanBlue.withValues(
                                 alpha:
                                     0.12 +
                                     math
@@ -244,14 +244,14 @@ class _SplashScreenState extends State<SplashScreen>
                           borderRadius: BorderRadius.circular(26),
                           boxShadow: [
                             BoxShadow(
-                              color: AppTheme.mossGreen.withValues(
+                              color: AppTheme.oceanBlue.withValues(
                                 alpha: 0.4,
                               ),
                               blurRadius: 60,
                               spreadRadius: 4,
                             ),
                             BoxShadow(
-                              color: AppTheme.mossGreen.withValues(
+                              color: AppTheme.oceanBlue.withValues(
                                 alpha: 0.15,
                               ),
                               blurRadius: 120,
@@ -259,7 +259,7 @@ class _SplashScreenState extends State<SplashScreen>
                             ),
                           ],
                           border: Border.all(
-                            color: AppTheme.mossGreen.withValues(
+                            color: AppTheme.oceanBlue.withValues(
                               alpha: 0.3,
                             ),
                             width: 1.5,
@@ -284,13 +284,13 @@ class _SplashScreenState extends State<SplashScreen>
                   opacity: _fadeAnimation,
                   child: Column(
                     children: [
-                      // "GARDEN" in white, "AI" in accent — editorial split
+                      // "POOL" in white, "AI" in accent — editorial split
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           const Text(
-                            'GARDEN',
+                            'POOL',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 34,
@@ -306,7 +306,7 @@ class _SplashScreenState extends State<SplashScreen>
                               vertical: 3,
                             ),
                             decoration: BoxDecoration(
-                              color: AppTheme.mossGreen,
+                              color: AppTheme.oceanBlue,
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: const Text(
@@ -337,7 +337,7 @@ class _SplashScreenState extends State<SplashScreen>
                             width: 4,
                             height: 4,
                             decoration: BoxDecoration(
-                              color: AppTheme.mossGreen,
+                              color: AppTheme.oceanBlue,
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -353,7 +353,7 @@ class _SplashScreenState extends State<SplashScreen>
                       Text(
                         'INTELLIGENT LANDSCAPE DESIGN',
                         style: TextStyle(
-                          color: AppTheme.mossGreen.withValues(
+                          color: AppTheme.oceanBlue.withValues(
                             alpha: 0.7,
                           ),
                           fontSize: 11,
@@ -395,7 +395,7 @@ class _SplashScreenState extends State<SplashScreen>
                                       height: 3,
                                       decoration: BoxDecoration(
                                         color: filled
-                                            ? AppTheme.mossGreen
+                                            ? AppTheme.oceanBlue
                                             : Colors.white.withValues(
                                                 alpha: 0.08,
                                               ),

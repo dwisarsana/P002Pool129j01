@@ -159,15 +159,15 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                       gradient: LinearGradient(
                         colors: [
                           Colors.transparent,
-                          AppTheme.mossGreen.withValues(alpha: 0.8),
-                          AppTheme.mintGreen,
-                          AppTheme.mossGreen.withValues(alpha: 0.8),
+                          AppTheme.oceanBlue.withValues(alpha: 0.8),
+                          AppTheme.aquaBlue,
+                          AppTheme.oceanBlue.withValues(alpha: 0.8),
                           Colors.transparent,
                         ],
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: AppTheme.mossGreen.withValues(alpha: 0.5),
+                          color: AppTheme.oceanBlue.withValues(alpha: 0.5),
                           blurRadius: 20,
                           spreadRadius: 5,
                         ),
@@ -252,13 +252,13 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                           child: CircularProgressIndicator(
                             strokeWidth: 2,
                             valueColor: const AlwaysStoppedAnimation(
-                                AppTheme.mossGreen),
+                                AppTheme.oceanBlue),
                             backgroundColor: Colors.white.withValues(alpha: 0.1),
                           ),
                         )
                       else
                         const Icon(Icons.check_circle_rounded,
-                            color: AppTheme.mossGreen, size: 22),
+                            color: AppTheme.oceanBlue, size: 22),
                       const SizedBox(width: 12),
                       Text(
                         _scanComplete
@@ -291,9 +291,9 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                             height: 28,
                             decoration: BoxDecoration(
                               color: isDone
-                                  ? AppTheme.mossGreen.withValues(alpha: 0.2)
+                                  ? AppTheme.oceanBlue.withValues(alpha: 0.2)
                                   : isCurrent
-                                      ? AppTheme.sunGlow.withValues(alpha: 0.2)
+                                      ? AppTheme.sunshineYellow.withValues(alpha: 0.2)
                                       : Colors.white.withValues(alpha: 0.05),
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -302,9 +302,9 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                                   ? Icons.check_rounded
                                   : step['icon'] as IconData,
                               color: isDone
-                                  ? AppTheme.mossGreen
+                                  ? AppTheme.oceanBlue
                                   : isCurrent
-                                      ? AppTheme.sunGlow
+                                      ? AppTheme.sunshineYellow
                                       : Colors.white30,
                               size: 14,
                             ),
@@ -330,7 +330,7 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                             Text(
                               '✓',
                               style: TextStyle(
-                                color: AppTheme.mossGreen,
+                                color: AppTheme.oceanBlue,
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -354,8 +354,8 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                         backgroundColor: Colors.white.withValues(alpha: 0.1),
                         valueColor: AlwaysStoppedAnimation(
                           _scanComplete
-                              ? AppTheme.mossGreen
-                              : AppTheme.sunGlow,
+                              ? AppTheme.oceanBlue
+                              : AppTheme.sunshineYellow,
                         ),
                       ),
                     ),
@@ -389,11 +389,11 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color:
-                              _scanComplete ? AppTheme.mossGreen : Colors.red,
+                              _scanComplete ? AppTheme.oceanBlue : Colors.red,
                           boxShadow: [
                             BoxShadow(
                               color: (_scanComplete
-                                      ? AppTheme.mossGreen
+                                      ? AppTheme.oceanBlue
                                       : Colors.red)
                                   .withValues(alpha: 0.5),
                               blurRadius: 6,
@@ -478,7 +478,7 @@ class _BracketPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppTheme.mossGreen
+      ..color = AppTheme.oceanBlue
       ..strokeWidth = 2.5
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -512,12 +512,12 @@ class _DetectionTag extends StatelessWidget {
         color: Colors.black.withValues(alpha: 0.7),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: AppTheme.mossGreen.withValues(alpha: 0.6),
+          color: AppTheme.oceanBlue.withValues(alpha: 0.6),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.mossGreen.withValues(alpha: 0.2),
+            color: AppTheme.oceanBlue.withValues(alpha: 0.2),
             blurRadius: 10,
           ),
         ],
@@ -525,7 +525,7 @@ class _DetectionTag extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 12, color: AppTheme.mossGreen),
+          Icon(icon, size: 12, color: AppTheme.oceanBlue),
           const SizedBox(width: 6),
           Text(
             label,
@@ -539,13 +539,13 @@ class _DetectionTag extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
             decoration: BoxDecoration(
-              color: AppTheme.mossGreen.withValues(alpha: 0.3),
+              color: AppTheme.oceanBlue.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(6),
             ),
             child: Text(
               '${(confidence * 100).toInt()}%',
               style: const TextStyle(
-                color: AppTheme.mintGreen,
+                color: AppTheme.aquaBlue,
                 fontSize: 9,
                 fontWeight: FontWeight.w700,
               ),

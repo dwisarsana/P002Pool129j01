@@ -93,7 +93,7 @@ class _NavBarItem extends StatelessWidget {
               child: Icon(
                 icon,
                 color: isActive
-                    ? AppTheme.mossGreen
+                    ? AppTheme.oceanBlue
                     : AppTheme.slate.withValues(alpha: 0.5),
                 size: 24,
               ),
@@ -104,7 +104,7 @@ class _NavBarItem extends StatelessWidget {
               width: isActive ? 4 : 0,
               height: 4,
               decoration: const BoxDecoration(
-                color: AppTheme.mossGreen,
+                color: AppTheme.oceanBlue,
                 shape: BoxShape.circle,
               ),
             ),
@@ -127,7 +127,7 @@ class _CreateButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: const BoxDecoration(
-          gradient: AppTheme.leafGradient,
+          gradient: AppTheme.waterGradient,
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(

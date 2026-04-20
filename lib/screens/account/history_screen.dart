@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/garden_model.dart';
+import '../../models/pool_model.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
 
@@ -50,7 +50,7 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-  late Future<List<GardenModel>> _gardensFuture;
+  late Future<List<PoolModel>> _poolsFuture;
   _SortOption _sortOption = _SortOption.newest;
   bool _isSelecting = false;
   final Set<String> _selectedIds = {};
@@ -62,7 +62,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   void _loadData() {
-    _gardensFuture = context.read<StorageService>().loadGardens();
+    _poolsFuture = context.read<StorageService>().loadPools();
   }
 
   void _reload() {
@@ -73,7 +73,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
     });
   }
 
-  List<GardenModel> _sort(List<GardenModel> list) {
+  List<PoolModel> _sort(List<PoolModel> list) {
     final sorted = [...list];
     switch (_sortOption) {
       case _SortOption.newest:
@@ -109,14 +109,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
       );
 
   // ── Delete selected ──────────────────────────────────────
-  Future<void> _deleteSelected(List<GardenModel> all) async {
+  Future<void> _deleteSelected(List<PoolModel> all) async {
     final confirm = await _showDeleteDialog(
         context, '${_selectedIds.length} item(s)');
     if (!confirm) return;
 
     final storage = context.read<StorageService>();
     final remaining = all.where((g) => !_selectedIds.contains(g.id)).toList();
-    await storage.saveGardens(remaining);
+    await storage.savePools(remaining);
     _reload();
   }
 
@@ -126,7 +126,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           builder: (_) => AlertDialog(
             backgroundColor: AppTheme.charcoal,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            title: const Text('Delete Garden?',
+            title: const Text('Delete Pool?',
                 style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
             content: Text(
               'Remove $label from your history? This cannot be undone.',
@@ -189,24 +189,24 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
                   decoration: BoxDecoration(
                     color: selected
-                        ? AppTheme.mossGreen.withValues(alpha: 0.2)
+                        ? AppTheme.oceanBlue.withValues(alpha: 0.2)
                         : Colors.white.withValues(alpha: 0.05),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       color: selected
-                          ? AppTheme.mossGreen.withValues(alpha: 0.5)
+                          ? AppTheme.oceanBlue.withValues(alpha: 0.5)
                           : Colors.transparent,
                     ),
                   ),
                   child: Row(
                     children: [
                       Icon(opt.icon,
-                          color: selected ? AppTheme.mintGreen : Colors.white54,
+                          color: selected ? AppTheme.aquaBlue : Colors.white54,
                           size: 20),
                       const SizedBox(width: 12),
                       Text(opt.label,
                           style: TextStyle(
-                            color: selected ? AppTheme.mintGreen : Colors.white70,
+                            color: selected ? AppTheme.aquaBlue : Colors.white70,
                             fontWeight: selected
                                 ? FontWeight.w700
                                 : FontWeight.w400,
@@ -215,7 +215,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       const Spacer(),
                       if (selected)
                         const Icon(Icons.check_rounded,
-                            color: AppTheme.mintGreen, size: 18),
+                            color: AppTheme.aquaBlue, size: 18),
                     ],
                   ),
                 ),
@@ -230,15 +230,15 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.warmSand,
+      backgroundColor: AppTheme.poolTileWhite,
       body: SafeArea(
-        child: FutureBuilder<List<GardenModel>>(
-          future: _gardensFuture,
+        child: FutureBuilder<List<PoolModel>>(
+          future: _poolsFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(AppTheme.mossGreen),
+                  valueColor: AlwaysStoppedAnimation<Color>(AppTheme.oceanBlue),
                 ),
               );
             }
@@ -249,8 +249,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
               onRefresh: () async {
                 _reload();
               },
-              color: AppTheme.mossGreen,
-              backgroundColor: AppTheme.warmSand,
+              color: AppTheme.oceanBlue,
+              backgroundColor: AppTheme.poolTileWhite,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -281,8 +281,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Garden Timeline',
-                                style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w900, color: AppTheme.mossGreen)),
+                            Text('Pool Timeline',
+                                style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w900, color: AppTheme.oceanBlue)),
                             Text(
                               '${all.length} transformation${all.length == 1 ? '' : 's'}',
                               style: TextStyle(
@@ -306,7 +306,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               ),
                             ],
                           ),
-                          child: const Icon(Icons.home_rounded, color: AppTheme.mossGreen, size: 20),
+                          child: const Icon(Icons.home_rounded, color: AppTheme.oceanBlue, size: 20),
                         ),
                         onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
                       ),
@@ -316,7 +316,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         icon: Icons.sort_rounded,
                         onTap: _showSortMenu,
                         badge: _sortOption != _SortOption.newest
-                            ? AppTheme.sunGlow
+                            ? AppTheme.sunshineYellow
                             : null,
                       ),
                       const SizedBox(width: 8),
@@ -364,17 +364,17 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               padding: const EdgeInsets.all(28),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: AppTheme.mossGreen.withValues(alpha: 0.08),
+                                color: AppTheme.oceanBlue.withValues(alpha: 0.08),
                               ),
                               child: const Icon(Icons.eco_rounded,
-                                  size: 52, color: AppTheme.mintGreen),
+                                  size: 52, color: AppTheme.aquaBlue),
                             ),
                             const SizedBox(height: 20),
-                            Text('No gardens yet',
+                            Text('No pools yet',
                                 style: Theme.of(context).textTheme.titleMedium),
                             const SizedBox(height: 8),
                             Text(
-                              'Start creating your first garden transformation!',
+                              'Start creating your first pool transformation!',
                               style: TextStyle(
                                   color: AppTheme.slate.withValues(alpha: 0.7),
                                   fontSize: 14),
@@ -393,11 +393,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
                       itemCount: all.length,
                       itemBuilder: (context, index) {
-                        final garden = all[index];
-                        final selected = _selectedIds.contains(garden.id);
+                        final pool = all[index];
+                        final selected = _selectedIds.contains(pool.id);
 
                         return _HistoryCard(
-                          garden: garden,
+                          pool: pool,
                           buildImage: _buildImage,
                           isSelecting: _isSelecting,
                           isSelected: selected,
@@ -405,13 +405,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             if (_isSelecting) {
                               setState(() {
                                 if (selected) {
-                                  _selectedIds.remove(garden.id);
+                                  _selectedIds.remove(pool.id);
                                 } else {
-                                  _selectedIds.add(garden.id);
+                                  _selectedIds.add(pool.id);
                                 }
                               });
                             } else {
-                              _openDetail(context, garden, all);
+                              _openDetail(context, pool, all);
                             }
                           },
                           onLongPress: () {
@@ -419,7 +419,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             if (!_isSelecting) {
                               setState(() {
                                 _isSelecting = true;
-                                _selectedIds.add(garden.id);
+                                _selectedIds.add(pool.id);
                               });
                             }
                           },
@@ -436,21 +436,21 @@ class _HistoryScreenState extends State<HistoryScreen> {
     );
   }
 
-  void _openDetail(BuildContext ctx, GardenModel garden, List<GardenModel> all) {
+  void _openDetail(BuildContext ctx, PoolModel pool, List<PoolModel> all) {
     showModalBottomSheet(
       context: ctx,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (_) => HistoryDetailSheet(
-        garden: garden,
+        pool: pool,
         buildImage: _buildImage,
         onDelete: () async {
           Navigator.pop(ctx);
-          final confirm = await _showDeleteDialog(ctx, 'this garden');
+          final confirm = await _showDeleteDialog(ctx, 'this pool');
           if (!confirm) return;
           final storage = context.read<StorageService>();
-          final remaining = all.where((g) => g.id != garden.id).toList();
-          await storage.saveGardens(remaining);
+          final remaining = all.where((g) => g.id != pool.id).toList();
+          await storage.savePools(remaining);
           _reload();
         },
       ),
@@ -462,7 +462,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
 // History Card
 // ─────────────────────────────────────────────────────────
 class _HistoryCard extends StatelessWidget {
-  final GardenModel garden;
+  final PoolModel pool;
   final Widget Function(String) buildImage;
   final bool isSelecting;
   final bool isSelected;
@@ -470,7 +470,7 @@ class _HistoryCard extends StatelessWidget {
   final VoidCallback onLongPress;
 
   const _HistoryCard({
-    required this.garden,
+    required this.pool,
     required this.buildImage,
     required this.isSelecting,
     required this.isSelected,
@@ -489,7 +489,7 @@ class _HistoryCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
           border: isSelected
-              ? Border.all(color: AppTheme.mossGreen, width: 2.5)
+              ? Border.all(color: AppTheme.oceanBlue, width: 2.5)
               : null,
           boxShadow: [
             BoxShadow(
@@ -504,7 +504,7 @@ class _HistoryCard extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              buildImage(garden.resultImagePath),
+              buildImage(pool.resultImagePath),
               // Gradient
               Positioned(
                 bottom: 0,
@@ -537,7 +537,7 @@ class _HistoryCard extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            garden.styleName,
+                            pool.styleName,
                             style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
@@ -548,14 +548,14 @@ class _HistoryCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            _formatDate(garden.timestamp),
+                            _formatDate(pool.timestamp),
                             style: const TextStyle(
                                 color: Colors.white60, fontSize: 12),
                           ),
                         ],
                       ),
                     ),
-                    if (garden.isFavorite)
+                    if (pool.isFavorite)
                       const Icon(Icons.favorite_rounded,
                           color: Colors.redAccent, size: 18),
                   ],
@@ -572,11 +572,11 @@ class _HistoryCard extends StatelessWidget {
                     height: 28,
                     decoration: BoxDecoration(
                       color: isSelected
-                          ? AppTheme.mossGreen
+                          ? AppTheme.oceanBlue
                           : Colors.black.withValues(alpha: 0.4),
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: isSelected ? AppTheme.mossGreen : Colors.white54,
+                        color: isSelected ? AppTheme.oceanBlue : Colors.white54,
                         width: 2,
                       ),
                     ),
@@ -606,13 +606,13 @@ class _HistoryCard extends StatelessWidget {
 // History Detail Bottom Sheet
 // ─────────────────────────────────────────────────────────
 class HistoryDetailSheet extends StatefulWidget {
-  final GardenModel garden;
+  final PoolModel pool;
   final Widget Function(String) buildImage;
   final VoidCallback onDelete;
 
   const HistoryDetailSheet({
     super.key,
-    required this.garden,
+    required this.pool,
     required this.buildImage,
     required this.onDelete,
   });
@@ -626,7 +626,7 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final g = widget.garden;
+    final g = widget.pool;
     final screenH = MediaQuery.of(context).size.height;
 
     return Container(
@@ -703,7 +703,7 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
                   Positioned(
                     top: 12, right: 12,
                     child: _SliderLabel(
-                        text: 'AFTER', color: AppTheme.sunGlow),
+                        text: 'AFTER', color: AppTheme.sunshineYellow),
                   ),
                 ],
               ),
@@ -779,17 +779,17 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
     return SnackBar(
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      backgroundColor: isSuccess ? AppTheme.mossGreen : AppTheme.slate,
+      backgroundColor: isSuccess ? AppTheme.oceanBlue : AppTheme.slate,
       content: Text(msg, style: const TextStyle(fontWeight: FontWeight.w500)),
     );
   }
 
-  void _openFullscreen(BuildContext ctx, GardenModel g) {
+  void _openFullscreen(BuildContext ctx, PoolModel g) {
     Navigator.push(
       ctx,
       MaterialPageRoute(
         builder: (_) => _FullscreenView(
-          garden: g,
+          pool: g,
           buildImage: widget.buildImage,
         ),
       ),
@@ -810,10 +810,10 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
 // Full Screen View
 // ─────────────────────────────────────────────────────────
 class _FullscreenView extends StatefulWidget {
-  final GardenModel garden;
+  final PoolModel pool;
   final Widget Function(String) buildImage;
 
-  const _FullscreenView({required this.garden, required this.buildImage});
+  const _FullscreenView({required this.pool, required this.buildImage});
 
   @override
   State<_FullscreenView> createState() => _FullscreenViewState();
@@ -837,10 +837,10 @@ class _FullscreenViewState extends State<_FullscreenView> {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            widget.buildImage(widget.garden.originalImagePath),
+            widget.buildImage(widget.pool.originalImagePath),
             ClipRect(
               clipper: _RightClipper(_sliderX),
-              child: widget.buildImage(widget.garden.resultImagePath),
+              child: widget.buildImage(widget.pool.resultImagePath),
             ),
             // Divider
             Positioned(
@@ -879,7 +879,7 @@ class _FullscreenViewState extends State<_FullscreenView> {
             ),
             Positioned(
               top: 60, right: 16,
-              child: _SliderLabel(text: 'AFTER', color: AppTheme.sunGlow),
+              child: _SliderLabel(text: 'AFTER', color: AppTheme.sunshineYellow),
             ),
             // Close
             Positioned(
@@ -910,7 +910,7 @@ class _FullscreenViewState extends State<_FullscreenView> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
-                    widget.garden.styleName,
+                    widget.pool.styleName,
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
@@ -979,10 +979,10 @@ class _HeaderIconBtn extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: AppTheme.mossGreen.withValues(alpha: 0.1),
+              color: AppTheme.oceanBlue.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(14),
             ),
-            child: Icon(icon, color: AppTheme.mossGreen, size: 22),
+            child: Icon(icon, color: AppTheme.oceanBlue, size: 22),
           ),
           if (badge != null)
             Positioned(
@@ -1019,15 +1019,15 @@ class _SelectionBar extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(16, 0, 16, 12),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: AppTheme.mossGreen.withValues(alpha: 0.15),
+        color: AppTheme.oceanBlue.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppTheme.mossGreen.withValues(alpha: 0.3)),
+        border: Border.all(color: AppTheme.oceanBlue.withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [
           Text('$count selected',
               style: const TextStyle(
-                  color: AppTheme.mintGreen,
+                  color: AppTheme.aquaBlue,
                   fontWeight: FontWeight.w600,
                   fontSize: 14)),
           const Spacer(),

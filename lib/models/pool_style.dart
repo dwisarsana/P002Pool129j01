@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class GardenStyle {
+class PoolStyle {
   final String id;
   final String name;
   final String description;
@@ -14,7 +14,7 @@ class GardenStyle {
   final String moodDescription;
   final Color? accentColor;
 
-  const GardenStyle({
+  const PoolStyle({
     required this.id,
     required this.name,
     required this.description,

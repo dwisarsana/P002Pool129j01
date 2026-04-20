@@ -1,5 +1,5 @@
 // lib/src/mypaywall.dart
-// Garden AI — Premium Paywall Screen
+// Pool AI — Premium Paywall Screen
 
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
@@ -16,15 +16,15 @@ import 'constant.dart'
         kPrivacyPolicyUrl,
         kTermsOfUseUrl;
 
-class GardenAIPaywall extends StatefulWidget {
+class PoolAIPaywall extends StatefulWidget {
   final bool forceLoading;
-  const GardenAIPaywall({super.key, this.forceLoading = false});
+  const PoolAIPaywall({super.key, this.forceLoading = false});
 
   @override
-  State<GardenAIPaywall> createState() => _GardenAIPaywallState();
+  State<PoolAIPaywall> createState() => _PoolAIPaywallState();
 }
 
-class _GardenAIPaywallState extends State<GardenAIPaywall>
+class _PoolAIPaywallState extends State<PoolAIPaywall>
     with SingleTickerProviderStateMixin {
   Offerings? _offerings;
   StoreProduct? _token5;
@@ -123,7 +123,7 @@ class _GardenAIPaywallState extends State<GardenAIPaywall>
       if (isPro) {
         if (Navigator.canPop(context)) Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Welcome to Garden AI Premium!')),
+          const SnackBar(content: Text('Welcome to Pool AI Premium!')),
         );
       }
     } catch (e) {
@@ -198,7 +198,7 @@ class _GardenAIPaywallState extends State<GardenAIPaywall>
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppTheme.mossGreen.withValues(alpha: 0.18),
+                    AppTheme.oceanBlue.withValues(alpha: 0.18),
                     const Color(0xFF0F1117),
                     const Color(0xFF0F1117),
                   ],
@@ -226,7 +226,7 @@ class _GardenAIPaywallState extends State<GardenAIPaywall>
         children: [
           CupertinoActivityIndicator(
             radius: 16,
-            color: AppTheme.mossGreen,
+            color: AppTheme.oceanBlue,
           ),
           SizedBox(height: 20),
           Text(
@@ -267,7 +267,7 @@ class _GardenAIPaywallState extends State<GardenAIPaywall>
             ),
             const SizedBox(height: 32),
             CupertinoButton(
-              color: AppTheme.mossGreen,
+              color: AppTheme.oceanBlue,
               onPressed: () {
                 _fetchOfferings();
                 _fetchToken5();
@@ -314,22 +314,22 @@ class _GardenAIPaywallState extends State<GardenAIPaywall>
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-              color: AppTheme.mossGreen.withValues(alpha: 0.1),
+              color: AppTheme.oceanBlue.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: AppTheme.mossGreen.withValues(alpha: 0.3),
+                color: AppTheme.oceanBlue.withValues(alpha: 0.3),
                 width: 1.5,
               ),
             ),
             child: const Icon(
               Icons.eco_rounded,
               size: 40,
-              color: AppTheme.mossGreen,
+              color: AppTheme.oceanBlue,
             ),
           ),
           const SizedBox(height: 24),
           const Text(
-            'Garden AI Premium',
+            'Pool AI Premium',
             style: TextStyle(
               color: Colors.white,
               fontSize: 26,
@@ -346,14 +346,14 @@ class _GardenAIPaywallState extends State<GardenAIPaywall>
           const SizedBox(height: 40),
 
           _sectionTitle('Premium Features'),
-          _feature(CupertinoIcons.infinite, 'Unlimited Garden generations'),
+          _feature(CupertinoIcons.infinite, 'Unlimited Pool generations'),
           _feature(
             CupertinoIcons.paintbrush,
-            'Access all 100+ Premium garden styles',
+            'Access all 100+ Premium pool styles',
           ),
           _feature(CupertinoIcons.photo_fill, 'High-resolution 4K exports'),
           _feature(CupertinoIcons.bolt_fill, 'Priority AI Rendering'),
-          _feature(CupertinoIcons.star_fill, 'Exclusive early-access plants'),
+          _feature(CupertinoIcons.star_fill, 'Exclusive early-access pools'),
 
           const SizedBox(height: 40),
 
@@ -411,7 +411,7 @@ class _GardenAIPaywallState extends State<GardenAIPaywall>
               width: double.infinity,
               height: 54,
               child: CupertinoButton(
-                color: AppTheme.mossGreen,
+                color: AppTheme.oceanBlue,
                 borderRadius: BorderRadius.circular(16),
                 onPressed: () => _buyPackage(pkg),
                 child: const Text(
@@ -451,7 +451,7 @@ class _GardenAIPaywallState extends State<GardenAIPaywall>
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
-          Icon(icon, color: AppTheme.mossGreen, size: 18),
+          Icon(icon, color: AppTheme.oceanBlue, size: 18),
           const SizedBox(width: 14),
           Expanded(
             child: Text(
@@ -472,7 +472,7 @@ class _GardenAIPaywallState extends State<GardenAIPaywall>
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppTheme.mossGreen.withValues(alpha: 0.2)),
+        border: Border.all(color: AppTheme.oceanBlue.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
@@ -496,7 +496,7 @@ class _GardenAIPaywallState extends State<GardenAIPaywall>
           ),
           CupertinoButton(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            color: AppTheme.mossGreen,
+            color: AppTheme.oceanBlue,
             borderRadius: BorderRadius.circular(10),
             onPressed: isBusy ? null : () => _buyPackage(pkg),
             child: isBusy
@@ -527,7 +527,7 @@ class _GardenAIPaywallState extends State<GardenAIPaywall>
         children: [
           const Icon(
             CupertinoIcons.cube_box,
-            color: AppTheme.mossGreen,
+            color: AppTheme.oceanBlue,
             size: 28,
           ),
           const SizedBox(width: 14),

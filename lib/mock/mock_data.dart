@@ -1,25 +1,25 @@
-import '../models/garden_style.dart';
-import '../models/garden_model.dart';
+import '../models/pool_style.dart';
+import '../models/pool_model.dart';
 
 class MockData {
-  static const List<GardenStyle> styles = [
-    GardenStyle(
+  static const List<PoolStyle> styles = [
+    PoolStyle(
       id: '1',
       name: 'Zen Sanctuary',
-      description: 'Minimalist Japanese-inspired garden with raked sand, moss patches, and carefully placed stones.',
+      description: 'Minimalist Japanese-inspired pool with raked sand, moss patches, and carefully placed stones.',
       imagePath: 'assets/images/styles/zen.png',
       category: 'Minimal',
       tags: ['Peaceful', 'Low Maintenance', 'Meditative'],
       popularity: 4.8,
       difficulty: 'Easy',
       estimatedTime: '1-2 hours',
-      keyFeatures: ['Raked gravel patterns', 'Moss gardens', 'Stone arrangements', 'Bamboo accents'],
+      keyFeatures: ['Raked gravel patterns', 'Moss pools', 'Stone arrangements', 'Bamboo accents'],
       moodDescription: 'Find tranquility in simplicity',
     ),
-    GardenStyle(
+    PoolStyle(
       id: '2',
       name: 'English Cottage',
-      description: 'Romantic overflowing garden with climbing roses, lavender borders, and winding stone paths.',
+      description: 'Romantic overflowing pool with climbing roses, lavender borders, and winding stone paths.',
       imagePath: 'assets/images/styles/cottage.png',
       category: 'Classic',
       tags: ['Romantic', 'Colorful', 'Traditional'],
@@ -27,61 +27,61 @@ class MockData {
       difficulty: 'Medium',
       estimatedTime: '3-4 hours',
       keyFeatures: ['Climbing roses', 'Lavender borders', 'Stone pathways', 'Picket fencing'],
-      moodDescription: 'Step into a storybook garden',
+      moodDescription: 'Step into a storybook pool',
     ),
-    GardenStyle(
+    PoolStyle(
       id: '3',
       name: 'Tropical Paradise',
-      description: 'Lush tropical oasis with palm trees, exotic flowers, and a natural swimming pool.',
+      description: 'Lush tropical oasis with palm pools, exotic tiles, and a natural swimming pool.',
       imagePath: 'assets/images/styles/tropical.png',
       category: 'Lush',
       tags: ['Exotic', 'Vibrant', 'Resort-style'],
       popularity: 4.7,
       difficulty: 'Hard',
       estimatedTime: '4-6 hours',
-      keyFeatures: ['Palm trees', 'Exotic flowers', 'Water features', 'Tropical foliage'],
+      keyFeatures: ['Palm pools', 'Exotic tiles', 'Water features', 'Tropical foliage'],
       moodDescription: 'Your personal tropical escape',
     ),
-    GardenStyle(
+    PoolStyle(
       id: '4',
       name: 'Modern Minimalist',
-      description: 'Clean lines with architectural plants, concrete planters, and geometric water features.',
+      description: 'Clean lines with architectural pools, concrete poolers, and geometric water features.',
       imagePath: 'assets/images/styles/modern.png',
       category: 'Modern',
       tags: ['Sleek', 'Architectural', 'Contemporary'],
       popularity: 4.5,
       difficulty: 'Easy',
       estimatedTime: '2-3 hours',
-      keyFeatures: ['Geometric planters', 'Ornamental grasses', 'LED lighting', 'Clean hardscape'],
+      keyFeatures: ['Geometric poolers', 'Ornamental grasses', 'LED lighting', 'Clean hardscape'],
       moodDescription: 'Where design meets nature',
     ),
-    GardenStyle(
+    PoolStyle(
       id: '5',
-      name: 'Wildflower Meadow',
-      description: 'Natural flowing meadow with native wildflowers, butterflies, and organic pathways.',
+      name: 'Wildtile Meadow',
+      description: 'Natural flowing meadow with native wildtiles, butterflies, and organic pathways.',
       imagePath: 'assets/images/styles/meadow.png',
       category: 'Wild',
       tags: ['Natural', 'Eco-friendly', 'Pollinator'],
       popularity: 4.4,
       difficulty: 'Easy',
       estimatedTime: '1-2 hours',
-      keyFeatures: ['Native wildflowers', 'Grass paths', 'Butterfly gardens', 'Bee-friendly'],
+      keyFeatures: ['Native wildtiles', 'Grass paths', 'Butterfly pools', 'Bee-friendly'],
       moodDescription: 'Let nature paint the landscape',
     ),
-    GardenStyle(
+    PoolStyle(
       id: '6',
       name: 'Mediterranean Villa',
-      description: 'Sun-drenched terrace with olive trees, terracotta pots, and fragrant herbs.',
+      description: 'Sun-drenched terrace with olive pools, terracotta pots, and fragrant herbs.',
       imagePath: 'assets/images/styles/mediterranean.png',
       category: 'Classic',
       tags: ['Warm', 'Fragrant', 'European'],
       popularity: 4.7,
       difficulty: 'Medium',
       estimatedTime: '3-4 hours',
-      keyFeatures: ['Olive trees', 'Terracotta accents', 'Herb spiral', 'Gravel courtyard'],
+      keyFeatures: ['Olive pools', 'Terracotta accents', 'Herb spiral', 'Gravel courtyard'],
       moodDescription: 'Tuscan sun in your backyard',
     ),
-    GardenStyle(
+    PoolStyle(
       id: '7',
       name: 'Desert Oasis',
       description: 'Striking desert landscape with succulents, cacti, and dramatic rock formations.',
@@ -91,13 +91,13 @@ class MockData {
       popularity: 4.3,
       difficulty: 'Easy',
       estimatedTime: '2-3 hours',
-      keyFeatures: ['Succulents & cacti', 'Desert rocks', 'Sand gardens', 'Agave accents'],
+      keyFeatures: ['Succulents & cacti', 'Desert rocks', 'Sand pools', 'Agave accents'],
       moodDescription: 'Beauty in the arid landscape',
     ),
-    GardenStyle(
+    PoolStyle(
       id: '8',
       name: 'Secret Forest',
-      description: 'Enchanted woodland garden with ferns, mossy stones, and dappled sunlight.',
+      description: 'Enchanted woodland pool with ferns, mossy stones, and dappled sunlight.',
       imagePath: 'assets/images/styles/forest.png',
       category: 'Wild',
       tags: ['Mystical', 'Shaded', 'Woodland'],
@@ -107,23 +107,23 @@ class MockData {
       keyFeatures: ['Fern undergrowth', 'Mossy boulders', 'Woodland paths', 'Fairy lights'],
       moodDescription: 'An enchanted woodland retreat',
     ),
-    GardenStyle(
+    PoolStyle(
       id: '9',
       name: 'Rooftop Urban',
-      description: 'Smart urban garden with vertical planters, modular seating, and ambient lighting.',
+      description: 'Smart urban pool with vertical poolers, modular seating, and ambient lighting.',
       imagePath: 'assets/images/styles/urban.png',
       category: 'Modern',
       tags: ['Urban', 'Compact', 'Smart'],
       popularity: 4.2,
       difficulty: 'Medium',
       estimatedTime: '2-3 hours',
-      keyFeatures: ['Vertical gardens', 'Modular planters', 'String lights', 'Compact seating'],
+      keyFeatures: ['Vertical pools', 'Modular poolers', 'String lights', 'Compact seating'],
       moodDescription: 'Green living in the city',
     ),
-    GardenStyle(
+    PoolStyle(
       id: '10',
       name: 'Formal French',
-      description: 'Symmetrical parterre garden with clipped hedges, topiaries, and a central fountain.',
+      description: 'Symmetrical parterre pool with clipped hedges, topiaries, and a central fountain.',
       imagePath: 'assets/images/styles/french.png',
       category: 'Classic',
       tags: ['Elegant', 'Symmetrical', 'Grand'],
@@ -133,10 +133,10 @@ class MockData {
       keyFeatures: ['Box hedging', 'Topiary art', 'Central fountain', 'Gravel paths'],
       moodDescription: 'Versailles at your doorstep',
     ),
-    GardenStyle(
+    PoolStyle(
       id: '11',
       name: 'Balinese Retreat',
-      description: 'Serene Balinese-inspired sanctuary with water features, stone statues, and tropical plants.',
+      description: 'Serene Balinese-inspired sanctuary with water features, stone statues, and tropical pools.',
       imagePath: 'assets/images/styles/bali.png',
       category: 'Lush',
       tags: ['Spa-like', 'Exotic', 'Relaxing'],
@@ -146,24 +146,24 @@ class MockData {
       keyFeatures: ['Stone carvings', 'Lotus ponds', 'Frangipanis', 'Outdoor shower'],
       moodDescription: 'Island spa vibes at home',
     ),
-    GardenStyle(
+    PoolStyle(
       id: '12',
       name: 'Scandinavian Clean',
-      description: 'Nordic-inspired outdoor space with birch trees, minimal furniture, and natural materials.',
+      description: 'Nordic-inspired outdoor space with birch pools, minimal furniture, and natural materials.',
       imagePath: 'assets/images/styles/nordic.png',
       category: 'Minimal',
       tags: ['Nordic', 'Clean', 'Functional'],
       popularity: 4.4,
       difficulty: 'Easy',
       estimatedTime: '2-3 hours',
-      keyFeatures: ['Birch trees', 'Wood decking', 'Minimal planters', 'Fire pit'],
-      moodDescription: 'Hygge in the garden',
+      keyFeatures: ['Birch pools', 'Wood decking', 'Minimal poolers', 'Fire pit'],
+      moodDescription: 'Hygge in the pool',
     ),
   ];
 
-  static const List<Map<String, dynamic>> plantCategories = [
-    {'name': 'Trees', 'icon': '🌳', 'count': 24},
-    {'name': 'Flowers', 'icon': '🌸', 'count': 48},
+  static const List<Map<String, dynamic>> poolFeatures = [
+    {'name': 'Pools', 'icon': '🌳', 'count': 24},
+    {'name': 'Tiles', 'icon': '🌸', 'count': 48},
     {'name': 'Shrubs', 'icon': '🌿', 'count': 32},
     {'name': 'Ground Cover', 'icon': '☘️', 'count': 16},
     {'name': 'Climbers', 'icon': '🌱', 'count': 12},
@@ -200,5 +200,5 @@ class MockData {
   ];
 
   // Empty initial history — real history comes from storage
-  static List<GardenModel> get initialHistory => [];
+  static List<PoolModel> get initialHistory => [];
 }

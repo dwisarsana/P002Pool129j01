@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/garden_style.dart';
+import '../../models/pool_style.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
 import '../main/main_screen.dart';
@@ -15,7 +15,7 @@ import '../account/history_screen.dart';
 class ResultScreen extends StatefulWidget {
   final String originalPath;
   final String resultPath;
-  final GardenStyle style;
+  final PoolStyle style;
   final Map<String, dynamic> settings;
 
   const ResultScreen({
@@ -52,7 +52,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         progress.expectedTotalBytes!
                     : null,
                 valueColor:
-                    const AlwaysStoppedAnimation<Color>(AppTheme.mintGreen),
+                    const AlwaysStoppedAnimation<Color>(AppTheme.aquaBlue),
               ),
             ),
           );
@@ -67,10 +67,10 @@ class _ResultScreenState extends State<ResultScreen> {
     return const _ImageError();
   }
 
-  void _saveGarden() async {
+  void _savePool() async {
     HapticFeedback.mediumImpact();
     final storage = context.read<StorageService>();
-    final current = await storage.loadGardens();
+    final current = await storage.loadPools();
 
     // Avoid duplicate saves (already saved by GeneratingScreen)
     final alreadySaved = current.any((g) =>
@@ -78,7 +78,7 @@ class _ResultScreenState extends State<ResultScreen> {
         g.originalImagePath == widget.originalPath);
 
     if (!alreadySaved) {
-      await storage.saveGardens(current); // already saved by generating screen
+      await storage.savePools(current); // already saved by generating screen
     }
 
     if (mounted) {
@@ -87,12 +87,12 @@ class _ResultScreenState extends State<ResultScreen> {
         SnackBar(
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-          backgroundColor: AppTheme.mossGreen,
+          backgroundColor: AppTheme.oceanBlue,
           content: const Row(
             children: [
               Icon(Icons.check_circle_rounded, color: Colors.white, size: 20),
               SizedBox(width: 10),
-              Text('Saved to your garden collection!',
+              Text('Saved to your pool collection!',
                   style: TextStyle(fontWeight: FontWeight.w500)),
             ],
           ),
@@ -198,7 +198,7 @@ class _ResultScreenState extends State<ResultScreen> {
               top: 80,
               right: 16,
               child: _Label(
-                  text: 'AFTER', color: AppTheme.sunGlow),
+                  text: 'AFTER', color: AppTheme.sunshineYellow),
             ),
 
           // ── Top bar ───────────────────────────────────────────────────
@@ -256,7 +256,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 Image.asset('assets/icon.png', width: 32, height: 32),
                 const SizedBox(width: 8),
                 const Text(
-                  'Garden AI',
+                  'Pool AI',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w800,
@@ -272,10 +272,10 @@ class _ResultScreenState extends State<ResultScreen> {
                     // Perspective: We need the ID to update storage.
                     // For now, we'll try to find it by path.
                     final storage = context.read<StorageService>();
-                    final gardens = await storage.loadGardens();
-                    final index = gardens.indexWhere((g) => g.resultImagePath == widget.resultPath);
+                    final pools = await storage.loadPools();
+                    final index = pools.indexWhere((g) => g.resultImagePath == widget.resultPath);
                     if (index != -1) {
-                      await storage.toggleFavorite(gardens[index].id);
+                      await storage.toggleFavorite(pools[index].id);
                     }
                   },
                   child: Container(
@@ -363,21 +363,21 @@ class _ResultScreenState extends State<ResultScreen> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
-                      color: AppTheme.mossGreen.withValues(alpha: 0.2),
+                      color: AppTheme.oceanBlue.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                          color: AppTheme.mossGreen.withValues(alpha: 0.3)),
+                          color: AppTheme.oceanBlue.withValues(alpha: 0.3)),
                     ),
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(Icons.auto_awesome_rounded,
-                            color: AppTheme.mintGreen, size: 16),
+                            color: AppTheme.aquaBlue, size: 16),
                         SizedBox(width: 8),
                         Text(
                           'Transformation Complete',
                           style: TextStyle(
-                            color: AppTheme.mintGreen,
+                            color: AppTheme.aquaBlue,
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
                           ),
@@ -423,11 +423,11 @@ class _ResultScreenState extends State<ResultScreen> {
                         child: SizedBox(
                           height: 56,
                           child: ElevatedButton(
-                            onPressed: _isSaved ? null : _saveGarden,
+                            onPressed: _isSaved ? null : _savePool,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: _isSaved
                                   ? Colors.white.withValues(alpha: 0.1)
-                                  : AppTheme.mossGreen,
+                                  : AppTheme.oceanBlue,
                               disabledBackgroundColor:
                                   Colors.white.withValues(alpha: 0.1),
                               shape: RoundedRectangleBorder(
@@ -435,7 +435,7 @@ class _ResultScreenState extends State<ResultScreen> {
                               ),
                               elevation: _isSaved ? 0 : 6,
                               shadowColor:
-                                  AppTheme.mossGreen.withValues(alpha: 0.4),
+                                  AppTheme.oceanBlue.withValues(alpha: 0.4),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

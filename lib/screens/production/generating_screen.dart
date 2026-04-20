@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/garden_model.dart';
-import '../../models/garden_style.dart';
-import '../../services/garden_generation_service.dart';
+import '../../models/pool_model.dart';
+import '../../models/pool_style.dart';
+import '../../services/pool_generation_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
 import 'result_screen.dart';
@@ -15,7 +15,7 @@ import '../../src/constant.dart';
 
 class GeneratingScreen extends StatefulWidget {
   final String imagePath;
-  final GardenStyle style;
+  final PoolStyle style;
   final Map<String, dynamic> settings;
 
   const GeneratingScreen({
@@ -33,9 +33,9 @@ class _GeneratingScreenState extends State<GeneratingScreen>
     with TickerProviderStateMixin {
   late final AnimationController _rotateCtrl;
   late final AnimationController _pulseCtrl;
-  final _service = GardenGenerationService();
+  final _service = PoolGenerationService();
 
-  String _statusMessage = 'Analyzing your garden...';
+  String _statusMessage = 'Analyzing your pool...';
   double _progress = 0.0;
   bool _hasError = false;
   String _errorMsg = '';
@@ -65,10 +65,10 @@ class _GeneratingScreenState extends State<GeneratingScreen>
 
   Future<void> _generate() async {
     final messages = [
-      (0.1, 'Analyzing garden space...'),
+      (0.1, 'Analyzing pool space...'),
       (0.25, 'Building style prompt...'),
       (0.45, 'Connecting to AI service...'),
-      (0.65, 'Generating your garden design...'),
+      (0.65, 'Generating your pool design...'),
       (0.85, 'Finalizing details...'),
     ];
 
@@ -111,7 +111,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
 
       setState(() {
         _progress = 1.0;
-        _statusMessage = 'Your garden is ready!';
+        _statusMessage = 'Your pool is ready!';
       });
 
       // Save to history
@@ -156,8 +156,8 @@ class _GeneratingScreenState extends State<GeneratingScreen>
   Future<void> _saveToHistory(String resultUrl) async {
     try {
       final storage = context.read<StorageService>();
-      final current = await storage.loadGardens();
-      final garden = GardenModel(
+      final current = await storage.loadPools();
+      final pool = PoolModel(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         originalImagePath: widget.imagePath,
         resultImagePath: resultUrl,
@@ -165,7 +165,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
         timestamp: DateTime.now(),
         settings: widget.settings,
       );
-      await storage.saveGardens([garden, ...current]);
+      await storage.savePools([pool, ...current]);
       // Increment session count for settings screen
       await incrementTotalGenerationCount();
     } catch (e) {
@@ -195,7 +195,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Animated garden icon
+        // Animated pool icon
         SizedBox(
           width: 160,
           height: 160,
@@ -214,13 +214,13 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: AppTheme.mossGreen.withValues(alpha: 0.3),
+                      color: AppTheme.oceanBlue.withValues(alpha: 0.3),
                       width: 2,
                     ),
                     gradient: SweepGradient(
                       colors: [
-                        AppTheme.mossGreen.withValues(alpha: 0.0),
-                        AppTheme.mossGreen.withValues(alpha: 0.6),
+                        AppTheme.oceanBlue.withValues(alpha: 0.0),
+                        AppTheme.oceanBlue.withValues(alpha: 0.6),
                       ],
                     ),
                   ),
@@ -237,7 +237,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                   height: 100,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppTheme.mossGreen.withValues(alpha: 0.15),
+                    color: AppTheme.oceanBlue.withValues(alpha: 0.15),
                   ),
                   child: Image.asset(
                     'assets/icon.png',
@@ -256,22 +256,22 @@ class _GeneratingScreenState extends State<GeneratingScreen>
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
-            color: AppTheme.mossGreen.withValues(alpha: 0.2),
+            color: AppTheme.oceanBlue.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: AppTheme.mossGreen.withValues(alpha: 0.4),
+              color: AppTheme.oceanBlue.withValues(alpha: 0.4),
             ),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               const Icon(Icons.auto_awesome_rounded,
-                  color: AppTheme.mintGreen, size: 16),
+                  color: AppTheme.aquaBlue, size: 16),
               const SizedBox(width: 8),
               Text(
                 widget.style.name,
                 style: const TextStyle(
-                  color: AppTheme.mintGreen,
+                  color: AppTheme.aquaBlue,
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
                 ),
@@ -283,7 +283,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
         const SizedBox(height: 24),
 
         Text(
-          'Creating Your Garden',
+          'Creating Your Pool',
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w800,
@@ -324,7 +324,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                 Text(
                   '${(_progress * 100).toInt()}%',
                   style: const TextStyle(
-                    color: AppTheme.mintGreen,
+                    color: AppTheme.aquaBlue,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),
@@ -342,7 +342,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                   minHeight: 8,
                   backgroundColor: Colors.white.withValues(alpha: 0.1),
                   valueColor:
-                      const AlwaysStoppedAnimation<Color>(AppTheme.mossGreen),
+                      const AlwaysStoppedAnimation<Color>(AppTheme.oceanBlue),
                 ),
               ),
             ),
@@ -433,7 +433,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                   _generate();
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.mossGreen,
+                  backgroundColor: AppTheme.oceanBlue,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),

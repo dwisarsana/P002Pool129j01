@@ -1,33 +1,33 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/garden_model.dart';
+import '../models/pool_model.dart';
 
 class StorageService {
-  static const String _historyKey = 'garden_history';
+  static const String _historyKey = 'pool_history';
 
-  Future<void> saveGardens(List<GardenModel> gardens) async {
+  Future<void> savePools(List<PoolModel> pools) async {
     final prefs = await SharedPreferences.getInstance();
-    final List<String> jsonList = gardens.map((g) => jsonEncode(g.toJson())).toList();
+    final List<String> jsonList = pools.map((g) => jsonEncode(g.toJson())).toList();
     await prefs.setStringList(_historyKey, jsonList);
   }
 
-  Future<List<GardenModel>> loadGardens() async {
+  Future<List<PoolModel>> loadPools() async {
     final prefs = await SharedPreferences.getInstance();
     final List<String>? jsonList = prefs.getStringList(_historyKey);
     
     if (jsonList == null) return [];
 
     return jsonList.map((jsonStr) {
-      return GardenModel.fromJson(jsonDecode(jsonStr));
+      return PoolModel.fromJson(jsonDecode(jsonStr));
     }).toList();
   }
 
   Future<void> toggleFavorite(String id) async {
-    final gardens = await loadGardens();
-    final index = gardens.indexWhere((g) => g.id == id);
+    final pools = await loadPools();
+    final index = pools.indexWhere((g) => g.id == id);
     if (index != -1) {
-      final g = gardens[index];
-      gardens[index] = GardenModel(
+      final g = pools[index];
+      pools[index] = PoolModel(
         id: g.id,
         originalImagePath: g.originalImagePath,
         resultImagePath: g.resultImagePath,
@@ -36,7 +36,7 @@ class StorageService {
         settings: g.settings,
         isFavorite: !g.isFavorite,
       );
-      await saveGardens(gardens);
+      await savePools(pools);
     }
   }
 
